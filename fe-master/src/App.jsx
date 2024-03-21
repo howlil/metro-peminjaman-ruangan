@@ -1,8 +1,13 @@
-import Beranda from "@/users/pages/beranda";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Beranda from "@/users/pages/beranda/beranda";
 function App() {
   return (
     <>
-      <Beranda />
+      <Router>
+        <Routes>
+            <Route path="/beranda" element={<Beranda />} />
+        </Routes>
+      </Router>
     </>
   );
 }
