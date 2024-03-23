@@ -6,6 +6,7 @@ export default function Card(props) {
 
   return (
     <div className="w-full p-3 border-gray-200  border-2 rounded-md  hover:shadow-2xl hover:shadow-custom-500 transition-all ease-in-out duration-500 ">
+      <Link to={"/"}>
       <img className="w-full rounded-md" src={image} alt="img" />
       <figcaption className="my-4">
         <h1 className="text-2xl font-semibold">{title}</h1>
@@ -15,6 +16,7 @@ export default function Card(props) {
         <p className="font-medium">lihat detail</p>
         <ArrowRight size={20} />
       </span>
+      </Link>
     </div>
   );
 }

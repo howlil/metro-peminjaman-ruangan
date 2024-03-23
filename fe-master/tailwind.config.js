@@ -13,6 +13,14 @@ export default {
           600: "#f9f9f9",
         },
       },
+      screens: {
+        'hp' : '475px',
+        'tablet': '640px',
+  
+        'laptop': '1024px',
+  
+        'desktop': '1280px',
+      },
     },
   },
   plugins: [],
