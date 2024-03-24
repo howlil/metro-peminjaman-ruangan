@@ -3,7 +3,7 @@ import Hero from "@/users/components/sections/beranda/Hero";
 import Layout from "@/users/components/Layout";
 import AlurPinjam from "@/users/components/sections/beranda/AlurPinjam";
 
-export default function Beranda() {
+export default function BerandaPage() {
   return (
     <Layout>
       <Hero />

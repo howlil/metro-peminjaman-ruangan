@@ -27,27 +27,27 @@ export const navdata = [
 
 export const navbardata = [
   {
-    label: "beranda",
+    label: "Branda",
     link: "/beranda",
   },
   {
-    label: "ruangan",
+    label: "Ruangan",
     link: "/ruangan",
   },
   {
-    label: "jadwal",
+    label: "Jadwal",
     link: "/jadwal",
   },
   {
-    label: "peminjaman",
+    label: "Peminjaman",
     link: "/peminjaman",
   },
   {
-    label: "riwayat",
+    label: "Riwayat",
     link: "/riwayat",
   },
   {
-    label: "kontak",
+    label: "Kontak",
     link: "/kontak",
   },
 ];
