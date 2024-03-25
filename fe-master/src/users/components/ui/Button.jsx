@@ -12,7 +12,7 @@ export default function Button({ label, color, size, ...rest }) {
   };
 
   let baseClasses =
-    "focus:outline-none rounded transition ease-in-out duration-300";
+    "focus:outline-none rounded transition ease-in-out duration-300 w-32";
 
   baseClasses += ` ${colorClasses[color] || ""}`;
   baseClasses += ` ${sizeClasses[size] || ""}`;
