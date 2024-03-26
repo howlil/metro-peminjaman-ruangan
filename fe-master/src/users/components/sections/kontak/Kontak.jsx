@@ -3,6 +3,7 @@ import Judul from "../../ui/Judul";
 import { Mail, MapPin, Phone } from "lucide-react";
 import AddressCard from "../../ui/AddressCard";
 import Container from "../../ui/Container";
+import Map from "./Map";
 
 export default function Kontak() {
   return (
@@ -27,6 +28,7 @@ export default function Kontak() {
         </div>
         <div className="my-16">
           <Judul judul="Our Location" />
+          <Map />
         </div>
       </div>
     </Container>
