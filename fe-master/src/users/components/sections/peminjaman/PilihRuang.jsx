@@ -14,22 +14,22 @@ export default function PilihRuang() {
             <CardRuangan
               title="Ruang Rapat Alpha"
               src="/public/img.jpg"
-              to="/beranda"
+              to="/peminjaman/checkruang"
             />
             <CardRuangan
               title="Ruang Rapat Alpha"
               src="/public/img.jpg"
-              to="/beranda"
+              to="/peminjaman/checkruang"
             />
             <CardRuangan
               title="Ruang Rapat Alpha"
               src="/public/img.jpg"
-              to="/beranda"
+              to="/peminjaman/checkruang"
             />
             <CardRuangan
               title="Ruang Rapat Alpha"
               src="/public/img.jpg"
-              to="/beranda"
+              to="/peminjaman/checkruang"
             />
           </div>
         </div>

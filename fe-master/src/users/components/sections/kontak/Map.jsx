@@ -2,25 +2,27 @@ import { GoogleMap, LoadScript } from "@react-google-maps/api";
 
 const containerStyle = {
   width: "100%",
-  height: "400px",
+  height: "600px",
 };
 
 const center = {
-  lat: -0.9205468,
-  lng: 100.4530141,
+  lat: -0.9542476,
+  lng: 100.3702452,
 };
 
 const apiKey = "AIzaSyBxCIsnYEehctxqLqPxVQmQfucFc_yn_Ok";
 
 function Map() {
   return (
-    <LoadScript googleMapsApiKey={apiKey}>
-      <GoogleMap
-        mapContainerStyle={containerStyle}
-        center={center}
-        zoom={10}
-      ></GoogleMap>
-    </LoadScript>
+    <div className=" p-4 shadow-lg rounded-md hover:shadow-2xl transition-all ease-linear duration-300">
+      <LoadScript googleMapsApiKey={apiKey}>
+        <GoogleMap
+          mapContainerStyle={containerStyle}
+          center={center}
+          zoom={15}
+        ></GoogleMap>
+      </LoadScript>
+    </div>
   );
 }
 

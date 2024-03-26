@@ -9,7 +9,7 @@ export default function Kontak() {
   return (
     <Container>
       <Judul judul="Kontak" />
-      <div>
+      <div className="mb-40">
         <div className="grid grid-cols-3 ">
           {addressCards.map((card, index) => (
             <div

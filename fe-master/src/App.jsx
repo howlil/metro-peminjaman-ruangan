@@ -6,6 +6,7 @@ import RuanganPage from "./users/pages/ruangan";
 import RiwayatPage from "./users/pages/riwayat";
 import PeminjamanPage from "./users/pages/peminjaman";
 import KontakPage from "./users/pages/kontak";
+import CheckRuang from "./users/components/sections/peminjaman/CheckRuang";
 function App() {
   return (
     <>
@@ -17,6 +18,7 @@ function App() {
           <Route path="/riwayat" element={<RiwayatPage />} />
           <Route path="/peminjaman" element={<PeminjamanPage />} />
           <Route path="/kontak" element={<KontakPage />} />
+          <Route path="/peminjaman/checkruang" element={<CheckRuang />} />
           <Route path="/*" element={<NotFound />} />
         </Routes>
       </Router>

@@ -1,7 +1,7 @@
 import React from "react";
 import Container from "../../ui/Container";
 import Judul from "../../ui/Judul";
-import CardRiwayat from "../../ui/CardRiwayat";
+import CardRiwayat from "./CardRiwayat";
 
 export default function Riwayat() {
   return (

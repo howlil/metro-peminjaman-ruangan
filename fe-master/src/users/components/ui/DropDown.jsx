@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { ChevronDown, ChevronUp } from "lucide-react";
+import { Link } from "react-router-dom";
 
 function Dropdown({ title, items }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -30,15 +31,16 @@ function Dropdown({ title, items }) {
         <div className="absolute left-0 mt-1 w-full bg-white rounded shadow z-10">
           <ul className="py-1">
             {items.map((item, index) => (
-              <li
-                key={index}
-                className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
-                onClick={() => {
-                  setIsOpen(false);
-                }}
-              >
-                {item.nama}
-              </li>
+              <Link to={"/ruangan"} key={index}>
+                <li
+                  className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                  onClick={() => {
+                    setIsOpen(false);
+                  }}
+                >
+                  {item.nama}
+                </li>
+              </Link>
             ))}
           </ul>
         </div>

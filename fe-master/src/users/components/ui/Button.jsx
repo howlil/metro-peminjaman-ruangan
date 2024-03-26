@@ -3,6 +3,7 @@ export default function Button({ label, color, size, ...rest }) {
     primary: "text-white bg-custom-100",
     secondary: "text-white bg-gray-500",
     danger: "text-white bg-red-500",
+    outline: "text-custom-300 border-custom-100 border-2",
   };
 
   const sizeClasses = {
