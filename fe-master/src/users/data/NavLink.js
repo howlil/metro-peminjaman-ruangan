@@ -27,7 +27,7 @@ export const navdata = [
 
 export const navbardata = [
   {
-    label: "Branda",
+    label: "Beranda",
     link: "/beranda",
   },
   {

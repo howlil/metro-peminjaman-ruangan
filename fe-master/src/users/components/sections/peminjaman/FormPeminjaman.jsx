@@ -1,9 +1,10 @@
 import InputLabel from "../../ui/InputLabel";
 import Judul from "../../ui/Judul";
+import Container from "../../ui/Container";
 import Button from "../../ui/Button";
 export default function FormPeminjaman() {
   return (
-    <div className="my-24">
+    <div className="py-12 px-6 sm:px-20 md:px-24 md:py-16">
       <Judul judul="Form Peminjaman Ruangan" />
       <div className="grid grid-cols-2 gap-2 mb-8">
         <InputLabel label="Nama Peminjam" type="text" />

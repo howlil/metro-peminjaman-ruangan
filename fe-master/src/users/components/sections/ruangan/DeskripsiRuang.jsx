@@ -2,7 +2,7 @@ import Button from "../../ui/Button";
 
 export default function DeskripsiRuang() {
   return (
-    <div className="ml-8 mt-4 space-y-4">
+    <div className="sm:ml-8 mt-8 mb-16 space-y-4">
       <h1 className="text-4xl  font-bold">Ruangan Alpha</h1>
       <p className="text-custom-500 leading-5">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris eu
@@ -18,8 +18,8 @@ export default function DeskripsiRuang() {
         </div>
       </div>
       <div className="w-full grid grid-cols-2 gap-x-2">
-        <Button color="outline" size="small" label="Kontak Penanggung Jawab" />
-        <Button color="primary" size="small" label="Ajukan Peminjaman" />
+        <Button color="outline" size="small" label="Kontak " />
+        <Button color="primary" size="small" label=" Peminjaman" />
       </div>
     </div>
   );

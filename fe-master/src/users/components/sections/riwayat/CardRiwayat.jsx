@@ -9,9 +9,16 @@ const IconTextPair = ({ Icon, text }) => (
   </div>
 );
 
-const CardRiwayat = ({ name, eventType, date, location, timeRange, buttonText }) => {
+const CardRiwayat = ({
+  name,
+  eventType,
+  date,
+  location,
+  timeRange,
+  buttonText,
+}) => {
   return (
-    <div className="flex justify-between items-center p-4 border-b-2">
+    <div className="sm:flex sm:justify-between items-center p-4 border-b-2 space-y-4">
       <div>
         <div className="flex items-center mb-1">
           <p className="font-semibold text-lg">{name}</p>
@@ -28,7 +35,7 @@ const CardRiwayat = ({ name, eventType, date, location, timeRange, buttonText })
         </div>
       </div>
 
-      <div className="bg-gray-800 text-white py-2 px-4 rounded">
+      <div className="bg-gray-800 text-white text-center py-2 px-4 rounded">
         {buttonText}
       </div>
     </div>

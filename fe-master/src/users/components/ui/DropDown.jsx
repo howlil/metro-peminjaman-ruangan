@@ -22,7 +22,7 @@ function Dropdown({ title, items }) {
   return (
     <div className="relative" ref={dropdownRef}>
       <button
-        className="flex items-center gap-2 px-4 py-2 rounded cursor-pointer"
+        className="flex items-center gap-2 px-3  rounded cursor-pointer"
         onClick={() => setIsOpen(!isOpen)}
       >
         {title} {isOpen ? <ChevronUp size={18} /> : <ChevronDown size={18} />}

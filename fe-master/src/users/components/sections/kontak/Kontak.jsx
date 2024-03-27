@@ -8,9 +8,11 @@ import Map from "./Map";
 export default function Kontak() {
   return (
     <Container>
-      <Judul judul="Kontak" />
+      <div className="sm:mt-12">
+        <Judul judul="Kontak" />
+      </div>
       <div className="mb-40">
-        <div className="grid grid-cols-3 ">
+        <div className="grid sm:grid-cols-3 gap-y-4">
           {addressCards.map((card, index) => (
             <div
               key={index}
