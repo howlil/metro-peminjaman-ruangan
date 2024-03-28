@@ -1,4 +1,5 @@
 import Layout from "../../Layout";
+import CalenderInfo from "./CalenderInfo";
 import CheckCard from "./CheckCard";
 import FormPeminjaman from "./FormPeminjaman";
 export default function LayoutRuang() {
@@ -9,7 +10,9 @@ export default function LayoutRuang() {
           <CheckCard />
         </div>
         <div className="col-span-2">
-          <FormPeminjaman />
+          {/* <FormPeminjaman /> */}
+          <CalenderInfo/>
+
         </div>
       </div>
     </Layout>
