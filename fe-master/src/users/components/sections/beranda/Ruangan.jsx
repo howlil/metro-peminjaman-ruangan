@@ -12,7 +12,7 @@ export default function Ruangan() {
           <hr className="border-custom-100 w-12   border-b-4" />
         </div> */}
         <Judul judul="Ruangan" />
-        <div className=" grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4  gap-4">
+        <div className=" grid grid-cols-1 sm:grid-cols-2  lg:grid-cols-4  gap-4">
           {dumies.map((data, id) => (
             <Card
               key={id}
