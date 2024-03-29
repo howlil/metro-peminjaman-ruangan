@@ -27,7 +27,7 @@ function SimpleCard({ dataCard }) {
         ))}
       </div>
       {selectedItem && (
-        <div className="right-0 top-0 h-full w-1/2 bg-gray-200 z-50 ml-3 rounded-md p-4 overflow-y-auto">
+        <div className="right-0 top-0 h-full w-1/2 bg-gray-200 ml-3 rounded-md p-4 overflow-y-auto">
           <h2 className="text-2xl font-semibold mb-4">Jadwal Peminjaman Hari Ini</h2>
           {Array.isArray(selectedItem.jadwal) ? (
             <div className="space-y-4">

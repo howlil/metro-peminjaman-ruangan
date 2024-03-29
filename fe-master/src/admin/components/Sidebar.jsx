@@ -1,11 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { sidebarData } from "../data/SideLink";
 import ActiveRoute from "./ActiveRoute";
 import { Link } from "react-router-dom";
 import { useSidebar } from './SidebarContext';
+import Logout from './Overlays/Logout';
 
 export default function Sidebar() {
   const { sidebarOpen, sidebarWidth, toggleSidebar } = useSidebar();
+  const [logoutDialogOpen, setLogoutDialogOpen] = useState(false);
+
+  const handleLogout = () => {
+    setLogoutDialogOpen(true);
+  };
+
+  const handleLogoutSuccess = () => {
+    window.location.href = '/admin/login';
+  };
 
   return (
     <aside>
@@ -26,12 +36,12 @@ export default function Sidebar() {
                   </ActiveRoute>
                 </div>
               ))}
-              <div className='bg-custom-300 flex w-full inline-block p-3 pl-7'> 
+              <div className='bg-custom-300 flex w-full cursor-pointer inline-block p-3 pl-7' onClick={handleLogout}> 
                 <img src="/iconSidebar/admin.svg" className="mr-2 w-6" alt="Icon"></img>
-                <Link to="#" className="text-white w-full">
+                <Link className="text-white w-full">
                   Admin
                 </Link>
-                <img src="/iconSidebar/logout.svg" className="ml-auto mr-2 w-6" alt="Icon"></img>
+                <img src="/iconSidebar/logout.svg" className="ml-auto mr-2 w-6" alt="Icon" ></img>
               </div>
             </nav>
           ) : (
@@ -44,12 +54,24 @@ export default function Sidebar() {
                 </div>
               ))}
               <div className="bg-custom-300 flex w-full inline-block p-3 pl-7"> 
-                <img src="/iconSidebar/logout.svg"  alt="Icon"></img>
+                <img src="/iconSidebar/logout.svg"  alt="Icon" onClick={handleLogout}></img>
               </div>
             </nav>
           )}
         </div>
       </div>
+
+      {logoutDialogOpen && (
+        <Logout 
+          onCancel={() => {
+            setLogoutDialogOpen(false);
+          }}
+          onLogout={() => {
+            setLogoutDialogOpen(false);
+            handleLogoutSuccess();
+          }}
+        />
+      )}
     </aside>
   );
 }

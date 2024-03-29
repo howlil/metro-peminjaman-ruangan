@@ -8,6 +8,7 @@ import PeminjamanPage from "./users/pages/peminjaman";
 import KontakPage from "./users/pages/kontak";
 import LayoutRuang from "./users/components/sections/peminjaman/LayoutRuang";
 
+import LoginPage from "./admin/pages/login";
 import DashboardPage from "./admin/pages/dashboard";
 import PengajuanPage from "./admin/pages/kelolaPengajuan";
 import KelolaKonfirmasiPage from "./admin/pages/kelolaKonfirmasi";
@@ -29,6 +30,7 @@ function App() {
           <Route path="/peminjaman/checkruang" element={<LayoutRuang />} />
           <Route path="/*" element={<NotFound />} />
 
+          <Route path="/admin/login" element={<LoginPage />}/>
           <Route path="/admin/dashboard" element={<DashboardPage />}/>
           <Route path="/admin/pengajuan" element={<PengajuanPage />}/>
           <Route path="/admin/konfirmasi" element={<KelolaKonfirmasiPage />}/>

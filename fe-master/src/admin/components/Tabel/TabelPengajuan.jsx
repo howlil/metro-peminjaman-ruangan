@@ -62,7 +62,7 @@ export default function TabelPengajuan({dataPeminjaman}) {
                           <LabelTextPair text={tanggal} />
                           <LabelTextPair text={mulai} />
                           <LabelTextPair text={selesai} />
-                          <a className="border-b border-black border-b-2" href={form}>Download disini</a>
+                          <a className="border-b border-black border-b-2" href={`/admin/pengajuan/${form}`}>Download disini</a>
                       </section>
                     </div>
                 </div>
