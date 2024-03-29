@@ -9,7 +9,7 @@ export default function Sidebar() {
 
   return (
     <aside>
-      <div className="flex h-screen fixed">
+      <div className="flex h-screen fixed w-64">
         <div className={`bg-custom-200 w-${sidebarWidth} transition-all duration-300 ease-in-out`}>
           <div className="flex py-6 items-center px-6">
             <img src="/iconSidebar/hamburger.svg" alt="hide" onClick={toggleSidebar} className="cursor-pointer w-10"/>

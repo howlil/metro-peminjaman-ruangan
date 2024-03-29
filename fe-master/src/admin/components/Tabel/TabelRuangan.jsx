@@ -4,7 +4,7 @@ import { ButtonWithIcon } from "../ButtonWithIcon";
 export default function TabelRuangan({dataRuangan}) {
   return (
     <Card className="w-full rounded-lg border border-gray-300">
-      <table className="w-full min-w-max table-auto text-left border border-gray-800 rounded-lg overflow-hidden">
+      <table className="w-full min-w-max table-auto text-left text-sm border border-gray-800 rounded-lg overflow-hidden">
         <tbody>
           {dataRuangan.map(({ nama }, index) => (
             <tr key={nama} class="flex odd:bg-white even:bg-custom-800">

@@ -8,8 +8,15 @@ import { ButtonWithIcon } from "../ButtonWithIcon";
 import { pilihanGedung } from "@/admin/data/data";
 import { pilihanLantai } from "@/admin/data/data";
 import { pilihanFasilitas } from "@/admin/data/data";
+import Simpan from "../Overlays/Simpan";
+import { useState } from "react";
 
 export default function FormRuang() {
+  const [showSimpan, setShowSimpan] = useState(false);
+
+  const handleSimpanOpen = () => {
+    setShowSimpan(true);
+  };
     return (
       <>
       <form action="#" method="post">
@@ -26,12 +33,12 @@ export default function FormRuang() {
         <CheckboxList label="Fasilitas" data={pilihanFasilitas}></CheckboxList>
         <DragDropFiles></DragDropFiles>
         <div className="flex justify-end w-full">
-        <ButtonWithIcon label="Simpan" icon="/simpan.svg" background="bg-custom-100"/>
+        <ButtonWithIcon label="Simpan" icon="/simpan.svg" background="bg-custom-100" onClick={() => handleSimpanOpen()}/>
         </div>
-
-
-
       </form>
+      {showSimpan && (
+        <Simpan onClose={() => setShowSimpan(false)} />
+      )}
       </>
     );
   }

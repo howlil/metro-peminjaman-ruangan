@@ -84,7 +84,8 @@ export const dataPeminjaman =[
     mulai : "12",
     selesai : "13",
     form : "aa",
-    status: "Selesai Digunakan"
+    status: "Selesai Digunakan",
+    waktu : "5 menit yang lalu"
   },
   {
     ruang : "Ruangan Beta",
