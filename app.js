@@ -5,6 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var app = express();
 const server = require('./routes/index')
+const multer = require('multer')
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -17,10 +18,22 @@ app.use('/', server.dashboard)
 app.use('/', server.ajuanPeminjaman)
 app.use('/', server.konfrimasi)
 app.use('/', server.ruangan)
+app.use('/', server.caraPeminjaman)
+app.use('/', server.riwayat)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
+});
+app.use((err, req, res, next) => {
+  if (err instanceof multer.MulterError) {
+    res.status(400).json({
+      success: false,
+      message: err.message
+    });
+  } else {
+    next(err);
+  }
 });
 
 // error handler
