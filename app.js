@@ -20,6 +20,9 @@ app.use('/', server.konfrimasi)
 app.use('/', server.ruangan)
 app.use('/', server.caraPeminjaman)
 app.use('/', server.riwayat)
+app.use('/', server.beranda)
+app.use('/', server.jadwal)
+app.use('/', server.peminjaman)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

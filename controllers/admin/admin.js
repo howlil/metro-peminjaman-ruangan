@@ -44,7 +44,7 @@ const loginAdmin = async (req,res) => {
             return res.status(400).json({success: false, message: 'Akun admin tidak ditemukan'})
         }
         bcrpyt.compare(password, findEmail.password, async (err, results) => {
-            if (err || results) {
+            if (err || !results) {
                 return res.status(400).json({success: false, message: 'Password anda salah'})
             }
             const id_admin = findEmail.id_admin
