@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const InputPass = ({ label, placeholder }) => {
+const InputPass = ({name, label, placeholder, value, onChange }) => {
   const [showPassword, setShowPassword] = useState(false);
 
   const togglePasswordVisibility = () => {
@@ -15,10 +15,11 @@ const InputPass = ({ label, placeholder }) => {
       <div className="relative mt-2 rounded-md shadow-sm">
         <input
           type={showPassword ? "text" : "password"}
-          name="inputNum"
-          id="inputNum"
+          name={name}
           className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
           placeholder={placeholder}
+          value={value}
+          onChange={onChange}
         />
         <button
           type="button"

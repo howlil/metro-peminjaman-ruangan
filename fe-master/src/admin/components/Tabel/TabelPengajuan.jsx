@@ -28,7 +28,7 @@ export default function TabelPengajuan({dataPeminjaman}) {
       <table className="w-full min-w-max table-auto text-left text-sm border border-gray-800 rounded-lg overflow-hidden">
         <tbody>
           {dataPeminjaman.map(({ ruang, nama, jabatan, kegiatan, kontak, tanggal, mulai, selesai, form, waktu }, index) => (
-            <tr key={nama} class="flex odd:bg-white even:bg-custom-800">
+            <tr key={nama} className="flex odd:bg-white even:bg-custom-800">
               <td className="flex  p-4 w-1/3">
                 <div className="flex-col">
                     <h1 className="font-medium text-xl mb-2">{ruang}</h1>
