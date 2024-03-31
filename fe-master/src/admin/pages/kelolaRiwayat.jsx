@@ -19,7 +19,7 @@ export default function KelolaRiwayatPage() {
             <div className="flex space-x-4">
               <div className="flex ml-auto mb-4 justify-center items-center"> 
               <h1 className="mr-3">Filter</h1>
-              <Filter data={dataRuang}></Filter>
+              <Filter></Filter>
               </div>
             </div>
             <TabelRiwayat dataRiwayat={dataPeminjaman}></TabelRiwayat>

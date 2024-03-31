@@ -2,17 +2,14 @@ import { Fragment, useRef, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { ButtonSimple } from '../ButtonSimple'
 
-export default function Simpan({ onClose }) {
+export default function Simpan({ onClose, onConfirm }) {
   const [open, setOpen] = useState(true)
 
   const cancelButtonRef = useRef(null)
 
   return (
     <Transition.Root show={open} as={Fragment}>
-      <Dialog as="div" className="relative z-10" initialFocus={cancelButtonRef} onClose={() => {
-        setOpen(false);
-        onClose(); 
-      }}>
+      <Dialog as="div" className="relative z-10" initialFocus={cancelButtonRef} onClose={onClose}>
         <Transition.Child
           as={Fragment}
           enter="ease-out duration-300"
@@ -47,12 +44,8 @@ export default function Simpan({ onClose }) {
                   </div>
                 </div>
                 <div className="px-4 py-3 sm:flex sm:flex-row-reverse justify-center items-center gap-5">
-                    <ButtonSimple label="Simpan" background="bg-custom-100" onClick={() => setOpen(false)}></ButtonSimple>
-                    <ButtonSimple label="Batal" background="bg-transparent border border-custom-100 text-custom-100" onClick={() => {
-                        setOpen(false);
-                        onClose(); 
-                    }}></ButtonSimple>
-
+                    <ButtonSimple label="Simpan" background="bg-custom-100" onClick={onConfirm}></ButtonSimple>
+                    <ButtonSimple label="Batal" background="bg-transparent border border-custom-100 text-custom-100" onClick={onClose}></ButtonSimple>
                 </div>
               </Dialog.Panel>
             </Transition.Child>
