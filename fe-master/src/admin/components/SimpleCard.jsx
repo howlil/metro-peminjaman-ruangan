@@ -1,52 +1,100 @@
 import React, { useState, useEffect } from 'react';
+import dataRuangan from '@/api/admin/ruangan/dataRuangan';
+import dataJadwal from '@/api/admin/dashboard/dataJadwal';
+import { Skeleton } from './Skeleton';
 
 function SimpleCard({ dataCard }) {
   const [selectedItem, setSelectedItem] = useState(null);
+  const [getRuangan, setRuangan] = useState(null);
+  const [jadwal, setJadwal] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [loadingJadwal, setLoadingJadwal] = useState(false); 
 
   useEffect(() => {
-    if (dataCard.length > 0) {
-      setSelectedItem(dataCard[0]);
-    }
+    const getData = async () => {
+      try {
+        const data = await dataRuangan();
+        setRuangan(data.data);
+        setLoading(false);
+        if (data.data.length > 0) { 
+          setSelectedItem(data.data[0]); 
+        }
+      } catch (error){
+        console.log(error);
+        setLoading(false);
+      }
+    };
+    getData();
   }, [dataCard]);
 
-  const handleClick = (item) => {
-    setSelectedItem(item);
+  useEffect(() => {
+    const fetchDataJadwal = async () => {
+      if (selectedItem) {
+        setLoadingJadwal(true);
+        try {
+          const jadwalData = await dataJadwal(selectedItem.id_ruangan);
+          setJadwal(jadwalData.data);
+        } catch (error) {
+          console.error(error);
+          setJadwal(null);
+        } finally {
+          setLoadingJadwal(false); 
+        }
+      }
+    };
+
+    fetchDataJadwal();
+  }, [selectedItem]);
+
+  const handleClick = (ruang) => {
+    setSelectedItem(ruang);
   };
 
   return (
-    <div className="flex">
-      <div className="w-1/2">
-        {dataCard.map((item, index) => (
-          <div 
-            key={index} 
-            onClick={() => handleClick(item)} 
-            className={`mb-3 rounded-md border border-gray-300 p-4 cursor-pointer ${selectedItem === item ? 'bg-custom-100 text-white' : 'bg-white'}`}
-          >
-            <h2 className="text-xl font-semibold mb-2">{item.nama}</h2>
+    <>
+      {loading ? (
+        <Skeleton />
+      ) : getRuangan ? (
+        <div className="flex">
+          <div className="w-1/2">
+            {getRuangan.map((ruang, index) => (
+              <div 
+                key={index} 
+                onClick={() => handleClick(ruang)} 
+                className={`mb-3 rounded-md border border-gray-300 p-4 cursor-pointer ${selectedItem === ruang ? 'bg-custom-100 text-white' : 'bg-white'}`}
+              >
+                <h2 className="text-xl font-semibold mb-2">{ruang.nama_ruangan}</h2>
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
-      {selectedItem && (
-        <div className="right-0 top-0 h-full w-1/2 bg-gray-200 ml-3 rounded-md p-4 overflow-y-auto">
-          <h2 className="text-2xl font-semibold mb-4">Jadwal Peminjaman Hari Ini</h2>
-          {Array.isArray(selectedItem.jadwal) ? (
-            <div className="space-y-4">
-              {selectedItem.jadwal.map((jadwal, index) => (
-                <div key={index}>
-                  <p className="text-lg font-semibold">{jadwal.mulai} - {jadwal.selesai}</p>
-                  <p>{jadwal.kegiatan}</p>
+          {selectedItem && (
+            <div className="right-0 top-0 h-full w-1/2 bg-gray-200 ml-3 rounded-md p-4 overflow-y-auto">
+              <h2 className="text-2xl font-semibold mb-4">Jadwal Peminjaman Hari Ini</h2>
+              {loadingJadwal ? ( 
+                <Skeleton />
+              ) : jadwal ? (
+                <div className="space-y-4">
+                  {jadwal.map((jadwalItem, index) => (
+                    <div key={index}>
+                      {jadwalItem.dataPeminjaman.map((item, innerIndex) => (
+                        <div key={innerIndex}>
+                          <p className="text-lg font-semibold">{item.jam_mulai_peminjaman} - {item.jam_selesai_peminjaman}</p>
+                          <p>{item.nama_kegiatan}</p>
+                        </div>
+                      ))}
+                    </div>
+                  ))}
                 </div>
-              ))}
-            </div>
-          ) : (
-            <div>
-              <p className="text-lg font-semibold">{selectedItem.jadwal.mulai} - {selectedItem.jadwal.selesai}</p>
-              <p>{selectedItem.jadwal.kegiatan}</p>
+              ) : (
+                <p>Data Jadwal tidak tersedia</p>
+              )}
             </div>
           )}
         </div>
+      ) : (
+        <p>Data Tidak Tersedia</p>
       )}
-    </div>
+    </>
   );
 }
 
