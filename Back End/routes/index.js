@@ -8,6 +8,7 @@ const riwayat = require('./admin/riwayat')
 const beranda = require('./pengguna/beranda')
 const jadwal = require('./pengguna/jadwal')
 const peminjaman = require('./pengguna/peminjaman')
+const riwayatUser = require('./pengguna/riwayat')
 const server = {}
 
 server.admin = admin
@@ -20,5 +21,6 @@ server.riwayat = riwayat
 server.beranda = beranda
 server.jadwal = jadwal
 server.peminjaman = peminjaman
+server.riwayatUser = riwayatUser
 
 module.exports = server
