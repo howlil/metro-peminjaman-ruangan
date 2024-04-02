@@ -4,24 +4,31 @@ var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 var app = express();
-const server = require("./routes/index");
-const multer = require("multer");
-var cors = require("cors");
-
-
-var corsOptions = {
-  origin: 'http://localhost:5173', // Izinkan hanya request dari origin ini
-};
-
-app.use(cors(corsOptions)); // Gunakan middleware cors dengan opsi yang telah ditentukan
-
+const server = require('./routes/index')
+const multer = require('multer')
+const cors = require('cors')
 
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(cors())
+app.use('/fotoRuangan', express.static('public/images/ruangan'))
+app.use('/filePengajuan', express.static('public/doc/filePengajuan'))
 app.use(express.static(path.join(__dirname, "public")));
 
+app.use('/', server.admin)
+app.use('/', server.dashboard)
+app.use('/', server.ajuanPeminjaman)
+app.use('/', server.konfrimasi)
+app.use('/', server.ruangan)
+app.use('/', server.caraPeminjaman)
+app.use('/', server.riwayat)
+app.use('/', server.beranda)
+app.use('/', server.jadwal)
+app.use('/', server.peminjaman)
+app.use('/', server.riwayatUser)
 app.use("/", server.admin);
 app.use("/", server.dashboard);
 app.use("/", server.ajuanPeminjaman);

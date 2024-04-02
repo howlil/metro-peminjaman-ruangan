@@ -6,7 +6,7 @@ const allDataKonfir = async (req,res) => {
     try {
         const findData = await modelPeminjaman.findAll({
             where: {
-                status: 'Disetujui'
+                status: 'Menunggu Konfirmasi'
             },
             include: [
                 {
@@ -58,7 +58,7 @@ const filterKonfirmasi = async (req, res) => {
         const {id_ruangan} = req.params
         const findData = await modelPeminjaman.findAll({
             where: {
-                status: 'Disetujui',
+                status: 'Menunggu Konfirmasi',
                 id_ruangan: id_ruangan
             },
             include: [

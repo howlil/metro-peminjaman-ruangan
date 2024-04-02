@@ -5,7 +5,7 @@ const modelRuangan = require('../../models/ruangan')
 const allDataPeminjaman = async (req,res) => {
     try {
         const findData = await modelPeminjaman.findAll({
-            attributes: ['id_peminjaman','nama_peminjam', 'jabatan', 'nama_kegiatan', 'kontak', 'tanggal_peminjaman', 'jam_mulai_peminjaman', 'jam_selesai_peminjaman', 'file_peminjaman'],
+            attributes: ['id_peminjaman','nama_peminjam', 'jabatan', 'nama_kegiatan', 'kontak', 'tanggal_peminjaman', 'jam_mulai_peminjaman', 'jam_selesai_peminjaman', 'file_peminjaman', 'updated_at'],
             include: [
                 {
                     model: modelRuangan,
@@ -37,7 +37,7 @@ const setujuPinjam = async (req,res) => {
             return res.status(400).json({success: false, message: 'Data peminjaman tidak ditemukan'})
         }
         const setuju = await modelPeminjaman.update({
-            status: 'Disetujui'
+            status: 'Menunggu Dikonfirmasi'
         }, {
             where:{
                 id_peminjaman: id_peminjaman
