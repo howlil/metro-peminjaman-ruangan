@@ -15,6 +15,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors())
 app.use('/fotoRuangan', express.static('public/images/ruangan'))
+app.use('/filePengajuan', express.static('public/doc/filePengajuan'))
 
 app.use('/', server.admin)
 app.use('/', server.dashboard)
