@@ -25,7 +25,7 @@ const tambahRuangan = async (namaRuangan, deskripsi, kapasitas, penanggungJawab,
     let request;
     try {
       const response = await fetch(
-        "https://6m90cgpg-5000.asse.devtunnels.ms/tambahRuangan",
+        "https://28jqlrhg-5000.asse.devtunnels.ms/tambahRuangan",
         requestOptions
       )
         request = await response.json()

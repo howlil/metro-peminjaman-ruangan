@@ -12,7 +12,7 @@ const editCara = async (id_file, formData) => {
 
     try {
       const response = await fetch(
-        `https://6m90cgpg-5000.asse.devtunnels.ms/tambahCaraPinjam/${id_file}`,
+        `https://28jqlrhg-5000.asse.devtunnels.ms//tambahCaraPinjam/${id_file}`,
         requestOptions
       );
       const result = await response.json();

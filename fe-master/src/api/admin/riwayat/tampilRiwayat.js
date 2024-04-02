@@ -12,7 +12,7 @@ const tampilRiwayat = async () => {
     let req;
     try {
       const response = await fetch(
-        "https://6m90cgpg-5000.asse.devtunnels.ms/tampilDataPinjam",
+        "https://28jqlrhg-5000.asse.devtunnels.ms//tampilDataPinjam",
         requestOptions
       );
       req = await response.json();

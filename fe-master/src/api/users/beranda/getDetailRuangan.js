@@ -1,13 +1,23 @@
 export default async function getDetailRuangan(id_ruangan) {
+  const requestOptions = {
+    method: "GET",
+    redirect: "follow",
+  };
 
-    const requestOptions = {
-        method: "GET",
-        redirect: "follow"
-      };
-      
-      fetch(`http://localhost:5000/detailRuanganUser/${id_ruangan}`, requestOptions)
-        .then((response) => response.text())
-        .then((result) => console.log(result))
-        .catch((error) => console.error(error));
+  try {
+    const data = await fetch(
+      `http://localhost:5000/detailRuanganUser/${id_ruangan}`,
+      requestOptions
+    );
 
+    const response = await data.json();
+    console.log("================asa====================");
+    console.log(response);
+    console.log("====================================");
+    return response;
+  } catch (error) {
+    console.log("====================================");
+    console.log(error);
+    console.log("====================================");
+  }
 }

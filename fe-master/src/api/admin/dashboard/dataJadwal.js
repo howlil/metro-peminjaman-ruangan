@@ -12,7 +12,7 @@ const dataJadwal = async (id_ruangan) => {
     let req;
     try {
       const response = await fetch(
-        `https://6m90cgpg-5000.asse.devtunnels.ms/dataJadwal/${id_ruangan}`,
+        `https://28jqlrhg-5000.asse.devtunnels.ms/${id_ruangan}`,
         requestOptions
       );
       req = await response.json();

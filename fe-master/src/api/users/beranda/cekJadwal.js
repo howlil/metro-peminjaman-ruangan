@@ -15,7 +15,7 @@ export default async function cekJawdwal(tanggal_peminjaman,jam_mulai_peminjaman
     redirect: "follow"
     };
 
-fetch("http://localhost:5000/cekJadwal", requestOptions)
+fetch("https://28jqlrhg-5000.asse.devtunnels.ms//cekJadwal", requestOptions)
   .then((response) => response.json())
   .then((result) =>{ return result})
   .catch((error) => console.error(error));

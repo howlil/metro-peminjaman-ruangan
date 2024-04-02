@@ -1,9 +1,7 @@
-import { ChevronDown } from "lucide-react";
 import { navbardata } from "../data/NavLink";
 import ActiveRoute from "./ActiveRoute";
 import DropDown from "./ui/DropDown";
 import { dataRuang } from "../data/data";
-import { Link } from "react-router-dom";
 import MobileNav from "./MobileNav";
 
 import Container from "./ui/Container";

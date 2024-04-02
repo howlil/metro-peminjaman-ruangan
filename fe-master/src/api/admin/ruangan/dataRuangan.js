@@ -12,7 +12,7 @@ const dataRuangan = async () => {
     let req;
     try {
       const response = await fetch(
-        "https://6m90cgpg-5000.asse.devtunnels.ms/dataRuangan",
+        "https://28jqlrhg-5000.asse.devtunnels.ms//dataRuangan",
         requestOptions
       );
       req = await response.json();

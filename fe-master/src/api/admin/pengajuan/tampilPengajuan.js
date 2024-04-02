@@ -12,7 +12,7 @@ const tampilPengajuan = async () => {
     let req;
     try {
       const response = await fetch(
-        "https://6m90cgpg-5000.asse.devtunnels.ms/allDataPeminjaman",
+        "https://28jqlrhg-5000.asse.devtunnels.ms//allDataPeminjaman",
         requestOptions
       );
       req = await response.json();
