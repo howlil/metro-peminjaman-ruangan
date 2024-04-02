@@ -14,6 +14,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors())
+app.use('/fotoRuangan', express.static('public/images/ruangan'))
+app.use('/filePengajuan', express.static('public/doc/filePengajuan'))
 
 app.use('/', server.admin)
 app.use('/', server.dashboard)
@@ -25,6 +27,7 @@ app.use('/', server.riwayat)
 app.use('/', server.beranda)
 app.use('/', server.jadwal)
 app.use('/', server.peminjaman)
+app.use('/', server.riwayatUser)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
