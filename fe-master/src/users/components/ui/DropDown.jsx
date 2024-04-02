@@ -12,16 +12,16 @@ function Dropdown({ title, items }) {
     }
   };
 
-  useEffect(() => {
-    const data = async () => {
-      const res = await getDetailRuangan();
+  // useEffect(() => {
+  //   const data = async () => {
+  //     const res = await getDetailRuangan();
 
-      console.log("====================================");
-      console.log(res);
-      console.log("====================================");
-    };
-    data();
-  }, []);
+  //     console.log("====================================");
+  //     console.log(res);
+  //     console.log("====================================");
+  //   };
+  //   data();
+  // }, []);
 
   useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);

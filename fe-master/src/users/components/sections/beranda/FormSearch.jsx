@@ -1,7 +1,6 @@
-import InputLabel from "../ui/InputLabel";
-import InputSelect from "../ui/InputSelect";
-import Button from "../ui/Button";
-import cekJawdwal from "@/api/users/beranda/cekJadwal";
+import InputLabel from "../../ui/InputLabel";
+import InputSelect from "../../ui/InputSelect";
+import Button from "../../ui/Button";
 import { useEffect } from "react";
 
 export default function FormSearch({ onSearch }) {
@@ -30,8 +29,13 @@ export default function FormSearch({ onSearch }) {
           <InputLabel placeholder="hr/mn" type="time" label="Waktu" />
           <InputSelect label="Ruangan" options={roomOptions} />
         </div>
-        <div className="flex justify-end">
+        <div className="sm:grid sm:grid-cols-3 " dir="rtl">
+          <div className="col-span-1">
           <Button type="submit" label="Check" color="primary" size="small" />
+          </div>
+          <div className="col-span-2">
+          
+          </div>
         </div>
       </form>
     </div>

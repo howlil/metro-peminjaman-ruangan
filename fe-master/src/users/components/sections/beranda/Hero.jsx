@@ -1,6 +1,5 @@
 import Container from "../../ui/Container";
-import FormSearch from "../../Layouts/FormSearch";
-import "aos/dist/aos.css";
+import FormSearch from "./FormSearch";
 
 export default function Hero() {
   return (
