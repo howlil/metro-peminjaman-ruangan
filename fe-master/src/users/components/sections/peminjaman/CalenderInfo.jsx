@@ -66,7 +66,12 @@ const CalendarInfo = () => {
   const eventSettings = { appData };
 
   return (
-    <div className="sm:ml-20 mx-6 sm:mx-0 sm:mr-10 lg:mr-36 mt-10">
+    <div
+      data-aos-duration="2000"
+      data-aos-anchor-easing="ease-in-out"
+      data-aos="fade-up"
+      className="sm:ml-20 mx-6 sm:mx-0 sm:mr-10 lg:mr-36 mt-10"
+    >
       <ScheduleComponent
         width="100%"
         height="450px"

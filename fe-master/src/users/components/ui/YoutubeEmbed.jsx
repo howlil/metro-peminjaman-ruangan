@@ -2,7 +2,10 @@ export default function YoutubeEmbed({ videoId }) {
   const youtubeEmbedUrl = `https://www.youtube.com/embed/${videoId}`;
 
   return (
-    <div className=" overflow-hidden ">
+    <div
+  
+      className=" overflow-hidden "
+    >
       <iframe
         width="560"
         height="315"

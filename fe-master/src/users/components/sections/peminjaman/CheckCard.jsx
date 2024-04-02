@@ -1,7 +1,12 @@
 export default function CheckCard() {
   return (
     <div className="bg-custom-300 w-full h-full">
-      <div className=" p-6 sm:p-20 md:pl-24 md:pr-4 md:pt-12 ">
+      <div
+        data-aos-duration="2000"
+        data-aos-anchor-easing="ease-in-out"
+        data-aos="fade-right"
+        className=" p-6 sm:p-20 md:pl-24 md:pr-4 md:pt-12 "
+      >
         <h1 className="text-white text-3xl font-bold mb-3">Ruangan Alpha</h1>
         <p className="leading-5 font-normal text-md text-custom-500">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris eu

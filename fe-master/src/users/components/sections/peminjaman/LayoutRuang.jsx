@@ -10,9 +10,8 @@ export default function LayoutRuang() {
           <CheckCard />
         </div>
         <div className="col-span-2">
-          {/* <FormPeminjaman /> */}
-          <CalenderInfo/>
-
+          <FormPeminjaman />
+          <CalenderInfo />
         </div>
       </div>
     </Layout>

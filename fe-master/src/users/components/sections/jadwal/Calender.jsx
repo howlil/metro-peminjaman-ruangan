@@ -39,13 +39,19 @@ const Calendar = () => {
   const eventSettings = { dataSource: data, fields: fieldsData };
 
   return (
-    <ScheduleComponent
-      height="650px"
-      selectedDate={new Date(2018, 1, 15)}
-      eventSettings={eventSettings}
+    <div
+      data-aos-duration="1500"
+      data-aos-anchor-easing="ease-in-out"
+      data-aos="fade-up"
     >
-      <Inject services={[Day, Week, WorkWeek, Month, Agenda]} />
-    </ScheduleComponent>
+      <ScheduleComponent
+        height="650px"
+        selectedDate={new Date(2018, 1, 15)}
+        eventSettings={eventSettings}
+      >
+        <Inject services={[Day, Week, WorkWeek, Month, Agenda]} />
+      </ScheduleComponent>
+    </div>
   );
 };
 

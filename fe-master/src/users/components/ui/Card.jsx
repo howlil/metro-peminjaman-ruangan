@@ -5,7 +5,12 @@ export default function Card(props) {
   const { link, title, describe, image } = props;
 
   return (
-    <div className="w-full p-3 border-gray-200  border-2 rounded-md  hover:shadow-2xl hover:shadow-custom-500 transition-all ease-in-out duration-500 ">
+    <div
+      data-aos-duration="1500"
+      data-aos-anchor-easing="ease-in-out"
+      data-aos="fade-up"
+      className="w-full p-3 border-gray-200  border-2 rounded-md  hover:shadow-2xl hover:shadow-custom-500 transition-all ease-in-out duration-500 "
+    >
       <Link to={`/ruangan/${link}`}>
         <img className="w-full rounded-md" src={image} alt="img" />
         <figcaption className="my-4">

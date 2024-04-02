@@ -6,7 +6,12 @@ const AccordionItem = ({ number, label, children }) => {
 
   return (
     <>
-      <div className=" border-2 border-gray-500 rounded-md  ">
+      <div
+        data-aos-duration="1500"
+        data-aos-anchor-easing="ease-in-out"
+        data-aos="fade-up"
+        className=" border-2 border-gray-500 rounded-md  "
+      >
         <div
           className="flex justify-between items-center p-4 rounded-md cursor-pointer"
           onClick={() => setIsOpen(!isOpen)}
@@ -27,7 +32,12 @@ const AccordionItem = ({ number, label, children }) => {
         </div>
       </div>
       {isOpen && (
-        <div className="py-8 ml-8 border-l border-dashed border-custom-100 px-8 ">
+        <div
+          data-aos-duration="1500"
+          data-aos-anchor-easing="ease-in-out"
+          data-aos="fade-right"
+          className="py-8 ml-8 border-l border-dashed border-custom-100 px-8 "
+        >
           <div className="bg-custom-500 p-4 rounded">{children}</div>
         </div>
       )}

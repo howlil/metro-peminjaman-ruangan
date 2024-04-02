@@ -2,7 +2,12 @@ import { Link } from "react-router-dom";
 
 export default function CardRuangan({ src, title, to }) {
   return (
-    <div className="overflow-hidden rounded-md hover:shadow-xl hover:shadow-gray-400 transition-all ease-in-out duration-300">
+    <div
+      data-aos-duration="2000"
+      data-aos-anchor-easing="ease-in-out"
+      data-aos="fade-up"
+      className="overflow-hidden rounded-md hover:shadow-xl hover:shadow-gray-400 transition-all ease-in-out duration-300"
+    >
       <Link to={to} className="block">
         <div
           className="bg-cover bg-center h-48 w-full flex items-center justify-center"

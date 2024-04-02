@@ -28,7 +28,7 @@ export const navdata = [
 export const navbardata = [
   {
     label: "Beranda",
-    link: "/beranda",
+    link: "/",
   },
   {
     label: "Ruangan",

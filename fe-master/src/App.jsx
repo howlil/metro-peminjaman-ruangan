@@ -21,7 +21,7 @@ function App() {
     <>
       <Router>
         <Routes>
-          <Route path="/beranda" element={<BerandaPage />} />
+          <Route path="/" element={<BerandaPage />} />
           <Route path="/jadwal" element={<JadwalPage />} />
           <Route path="/ruangan" element={<RuanganPage />} />
           <Route path="/riwayat" element={<RiwayatPage />} />
@@ -30,14 +30,14 @@ function App() {
           <Route path="/peminjaman/checkruang" element={<LayoutRuang />} />
           <Route path="/*" element={<NotFound />} />
 
-          <Route path="/admin/login" element={<LoginPage />}/>
-          <Route path="/admin/dashboard" element={<DashboardPage />}/>
-          <Route path="/admin/pengajuan" element={<PengajuanPage />}/>
-          <Route path="/admin/konfirmasi" element={<KelolaKonfirmasiPage />}/>
-          <Route path="/admin/ruangan" element={<KelolaRuanganPage />}/>
-          <Route path="/admin/ruangan/tambah" element={<TambahRuanganPage />}/>
-          <Route path="/admin/cara" element={<KelolaCaraPage />}/>
-          <Route path="/admin/riwayat" element={<KelolaRiwayatPage />}/>
+          <Route path="/admin/login" element={<LoginPage />} />
+          <Route path="/admin/dashboard" element={<DashboardPage />} />
+          <Route path="/admin/pengajuan" element={<PengajuanPage />} />
+          <Route path="/admin/konfirmasi" element={<KelolaKonfirmasiPage />} />
+          <Route path="/admin/ruangan" element={<KelolaRuanganPage />} />
+          <Route path="/admin/ruangan/tambah" element={<TambahRuanganPage />} />
+          <Route path="/admin/cara" element={<KelolaCaraPage />} />
+          <Route path="/admin/riwayat" element={<KelolaRiwayatPage />} />
         </Routes>
       </Router>
     </>

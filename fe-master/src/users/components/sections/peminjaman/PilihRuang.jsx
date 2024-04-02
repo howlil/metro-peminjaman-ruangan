@@ -9,7 +9,14 @@ export default function PilihRuang() {
       <div className=" py-4 md:py-16">
         <Judul judul="Peminjaman" />
         <div className="mb-24">
-          <p className="text-xl font-medium mb-3">Pilih Ruangan</p>
+          <p
+            data-aos-duration="2000"
+            data-aos-anchor-easing="ease-in-out"
+            data-aos="fade-up"
+            className="text-xl font-medium mb-3"
+          >
+            Pilih Ruangan
+          </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
             <CardRuangan
               title="Ruang Rapat Alpha"

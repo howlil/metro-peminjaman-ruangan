@@ -15,7 +15,11 @@ const apiKey = "AIzaSyBxCIsnYEehctxqLqPxVQmQfucFc_yn_Ok";
 
 function Map() {
   return (
-    <div className=" p-4 shadow-lg rounded-md hover:shadow-2xl transition-all ease-linear duration-300">
+    <div
+    data-aos-duration="2000"
+    data-aos-anchor-easing="ease-in-out"
+    data-aos="fade-up"
+    className=" p-4 shadow-lg rounded-md hover:shadow-2xl transition-all ease-linear duration-300">
       <LoadScript googleMapsApiKey={apiKey}>
         <GoogleMap
           mapContainerStyle={containerStyle}

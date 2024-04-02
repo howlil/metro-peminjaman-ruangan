@@ -18,7 +18,12 @@ const CardRiwayat = ({
   buttonText,
 }) => {
   return (
-    <div className="sm:flex sm:justify-between items-center p-4 border-b-2 space-y-4">
+    <div
+      data-aos-duration="2000"
+      data-aos-anchor-easing="ease-in-out"
+      data-aos="fade-up"
+      className="sm:flex sm:justify-between items-center p-4 border-b-2 space-y-4"
+    >
       <div>
         <div className="flex items-center mb-1">
           <p className="font-semibold text-lg">{name}</p>
