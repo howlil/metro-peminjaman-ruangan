@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import { useRef, useState } from "react";
 
 const InputFile = ({ label, onChange, placeholder }) => {
   const inputRef = useRef(null);

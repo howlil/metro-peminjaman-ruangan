@@ -2,7 +2,12 @@ import React from "react";
 
 export default function GaleriRuangan() {
   return (
-    <div className="flex flex-col gap-y-2 ">
+    <div
+      data-aos-duration="2000"
+      data-aos-anchor-easing="ease-in-out"
+      data-aos="fade-right"
+      className="flex flex-col gap-y-2 "
+    >
       <div className="aspect-w-16 aspect-h-9 h-1/3">
         <img className="object-cover w-full h-full" src="/img.jpg" alt="" />
       </div>

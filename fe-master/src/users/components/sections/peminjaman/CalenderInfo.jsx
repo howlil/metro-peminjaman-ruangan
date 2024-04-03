@@ -62,7 +62,7 @@ const appData = [
   },
 ];
 
-const CalendarInfo = () => {
+const CalendarInfo = ({onClick}) => {
   const eventSettings = { appData };
 
   return (
@@ -98,7 +98,9 @@ const CalendarInfo = () => {
         </div>
       </div>
       <div className="grid sm:grid-cols-3 my-8">
-        <Button label="Ajukan peminjaman" color="primary" size="small" />
+        <Button 
+        onClick={onClick}
+        label="Ajukan peminjaman" color="primary" size="small" />
       </div>
     </div>
   );

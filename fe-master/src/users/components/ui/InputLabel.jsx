@@ -1,4 +1,3 @@
-import React from "react";
 
 export default function InputLabel(props) {
   const { label,onChange,value, type, placeholder } = props;

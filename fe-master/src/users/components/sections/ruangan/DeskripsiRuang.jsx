@@ -2,7 +2,12 @@ import Button from "../../ui/Button";
 
 export default function DeskripsiRuang() {
   return (
-    <div className="sm:ml-8 mt-8 mb-16 space-y-4">
+    <div
+      data-aos-duration="2000"
+      data-aos-anchor-easing="ease-in-out"
+      data-aos="fade-left"
+      className="sm:ml-8 mt-8 mb-16 space-y-4"
+    >
       <h1 className="text-4xl  font-bold">Ruangan Alpha</h1>
       <p className="text-custom-500 leading-5">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris eu

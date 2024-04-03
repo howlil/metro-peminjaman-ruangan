@@ -1,18 +1,25 @@
-export default async function getDataRuanganUser() {
+async function getDataRuanganUser() {
   const requestOptions = {
     method: "GET",
     redirect: "follow",
   };
 
   try {
-    const response = await fetch("https://28jqlrhg-5000.asse.devtunnels.ms/dataRuanganUser", requestOptions);
+    
+    const apiUrl = `${import.meta.env.VITE_API_BASE_URL}/dataRuanganUser`;
+    const response = await fetch(apiUrl, requestOptions);
+
     if (!response.ok) {
-      throw new Error('Network response was not ok');
+      throw new Error(`HTTP error! status: ${response.status}`);
     }
+
     const result = await response.json();
-    return result; 
+  
+    return result;
   } catch (error) {
-    console.error('Failed to fetch:', error);
-    throw error; 
+    console.error("Error in try-catch:", error);
+    throw error;
   }
 }
+
+export default getDataRuanganUser;

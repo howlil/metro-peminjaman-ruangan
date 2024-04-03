@@ -4,7 +4,6 @@ import Judul from "../../ui/Judul";
 import getDataRuanganUser from "@/api/users/beranda/getDataRuanganUser";
 import { useEffect, useState } from "react";
 
-
 export default function Ruangan() {
   const [ruang, setRuang] = useState([]);
   useEffect(() => {
@@ -18,28 +17,27 @@ export default function Ruangan() {
     getRuang();
   }, []);
 
-
   return (
-    <Container>
-      <div className="my-9">
-        <Judul judul="Ruangan" />
-        <div
-        
-        className=" grid grid-cols-1 sm:grid-cols-2  lg:grid-cols-4  gap-4">
-          {ruang.map((data) => (
-            <Card
-              key={data.id_ruangan}
-              describe={
-                data.deskripsi.slice(0, 130) +
-                (data.deskripsi.length > 100 ? "..." : "")
-              }
-              image={data.gambar}
-              title={data.nama_ruangan}
-              link={data.id_ruangan}
-            />
-          ))}
+    <>
+      <Container>
+        <div className="min-h-screen">
+          <Judul judul="Ruangan" />
+          <div className=" grid grid-cols-1 sm:grid-cols-2  lg:grid-cols-4  gap-4">
+            {ruang.map((data) => (
+              <Card
+                key={data.id_ruangan}
+                describe={
+                  data.deskripsi.slice(0, 130) +
+                  (data.deskripsi.length > 100 ? "..." : "")
+                }
+                image={data.gambar}
+                title={data.nama_ruangan}
+                link={data.id_ruangan}
+              />
+            ))}
+          </div>
         </div>
-      </div>
-    </Container>
+      </Container>
+    </>
   );
 }
