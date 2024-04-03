@@ -36,18 +36,27 @@ export default function FormSearch() {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    let timer;
+    if (isSuccess || isFail) {
+      timer = setTimeout(() => {
+        setSuccess("");
+        setFail("");
+      }, 3000);
+    }
+
+    return () => clearTimeout(timer);
+  }, [isSuccess, isFail]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const result = await cekJadwal(tanggal, waktu, selectedRuang);
-
+      setSuccess(result.message);
       console.log(result);
-      setSuccess("Schedule check successful"); // Update your state based on actual result
-      setFail(""); // Clear any previous error messages
     } catch (error) {
       console.error("Error checking schedule:", error.message);
-      setFail("Failed to check schedule"); // Update your state to reflect the failure
-      setSuccess(""); // Clear any previous success messages
+      setFail(error.message);
     }
   };
 
@@ -80,7 +89,15 @@ export default function FormSearch() {
           <div className="col-span-1">
             <Button type="submit" label="Check" color="primary" size="small" />
           </div>
-          <div className="col-span-2"></div>
+          <div className="col-span-2">
+            <p
+              className={`${
+                isSuccess ? "text-green-600" : isFail ? "text-red-600" : ""
+              } text-md mt-2 sm:mt-0 sm:text-left text-center`}
+            >
+              {isSuccess || isFail}
+            </p>
+          </div>
         </div>
       </form>
     </div>

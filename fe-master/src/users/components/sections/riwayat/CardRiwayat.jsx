@@ -8,6 +8,17 @@ const IconTextPair = ({ Icon, text }) => (
     <span>{text}</span>
   </div>
 );
+function getColorVariant(buttonText) {
+  const colorMap = {
+    Diproses: "bg-amber-500",
+    Ditolak: "bg-red-500",
+    Disetujui: "bg-green-500",
+    Selesai: "bg-custom-100",
+  };
+
+  // Default to some color if buttonText is not found in colorMap
+  return colorMap[buttonText] || "bg-gray-800";
+}
 
 const CardRiwayat = ({
   name,
@@ -17,6 +28,8 @@ const CardRiwayat = ({
   timeRange,
   buttonText,
 }) => {
+  const bgColorClass = getColorVariant(buttonText);
+
   return (
     <div
       data-aos-duration="2000"
@@ -25,7 +38,7 @@ const CardRiwayat = ({
       className="sm:flex sm:justify-between items-center p-4 border-b-2 space-y-4"
     >
       <div>
-        <div className="flex items-center mb-1">
+        <div className="flex  items-center mb-1">
           <p className="font-semibold text-lg">{name}</p>
         </div>
         <div className="flex gap-8 items-end">
@@ -40,7 +53,9 @@ const CardRiwayat = ({
         </div>
       </div>
 
-      <div className="bg-gray-800 text-white text-center py-2 px-4 rounded">
+      <div
+        className={`${bgColorClass} text-white text-center py-2 px-4 rounded`}
+      >
         {buttonText}
       </div>
     </div>

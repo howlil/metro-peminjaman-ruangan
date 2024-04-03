@@ -1,37 +1,31 @@
 /** @type {import('tailwindcss').Config} */
-module.exports = {
-  darkMode: ["class"],
-  content: [
-    './pages/**/*.{js,jsx}',
-    './components/**/*.{js,jsx}',
-    './app/**/*.{js,jsx}',
-    './src/**/*.{js,jsx}',
-  ],
-  prefix: "",
+export default {
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
-    container: {
-      center: true,
-      padding: "2rem",
-      screens: {
-        "2xl": "1400px",
-      },
-    },
     extend: {
-      keyframes: {
-        "accordion-down": {
-          from: { height: "0" },
-          to: { height: "var(--radix-accordion-content-height)" },
-        },
-        "accordion-up": {
-          from: { height: "var(--radix-accordion-content-height)" },
-          to: { height: "0" },
+      colors: {
+        custom: {
+          100: "#574FF0",
+          200: "#262830",
+          300: "#1A1B1F",
+          400: "#333",
+          500: "#969696",
+          600: "#f9f9f9",
+          700: "#F10707",
+          800: "#EFEFEF"
         },
       },
-      animation: {
-        "accordion-down": "accordion-down 0.2s ease-out",
-        "accordion-up": "accordion-up 0.2s ease-out",
+      screens: {
+        'hp' : '475px',
+        'tablet': '640px',
+  
+        'laptop': '1024px',
+  
+        'desktop': '1280px',
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
-}
+  plugins: [
+    require('@tailwindcss/aspect-ratio'),
+  ],
+};

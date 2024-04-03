@@ -1,31 +1,47 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Container from "../../ui/Container";
 import Judul from "../../ui/Judul";
 import CardRiwayat from "./CardRiwayat";
 import getRiwayat from "@/api/users/riwayat/getRiwayat";
 
 export default function Riwayat() {
+  // State to store fetched data
+  const [riwayat, setRiwayat] = useState([]);
+
   useEffect(() => {
     const fetchdata = async () => {
       const data = await getRiwayat();
-      console.log("====================================");
-      console.log(data);
-      console.log("====================================");
+      if (data) {
+        setRiwayat(data.data);
+      }
     };
     fetchdata();
   }, []);
+
+  const formatTime = (time24) => {
+    const [hours, minutes] = time24.split(":");
+    const hours12 = hours % 12 || 12;
+    const ampm = hours < 12 ? "AM" : "PM";
+    return `${hours12}:${minutes} ${ampm}`;
+  };
+
   return (
     <Container>
       <Judul judul="Riwayat" />
       <div className="mb-32">
-        <CardRiwayat
-          name="Ilham Fajar"
-          eventType="Pelantikan"
-          date="24 Maret 2024"
-          location="Ruang Alpha"
-          timeRange="07:30 WIB - 10.00 WIB"
-          buttonText="Diproses"
-        />
+        {riwayat.map((item, index) => (
+          <CardRiwayat
+            key={index}
+            name={item.nama_peminjam}
+            eventType={item.nama_kegiatan}
+            date={item.tanggal_peminjaman}
+            location={item.dataRuangan.nama_ruangan}
+            timeRange={`${formatTime(item.jam_mulai_peminjaman)} - ${formatTime(
+              item.jam_selesai_peminjaman
+            )}`}
+            buttonText={item.status}
+          />
+        ))}
       </div>
     </Container>
   );

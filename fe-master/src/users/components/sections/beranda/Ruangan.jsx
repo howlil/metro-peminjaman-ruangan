@@ -10,9 +10,9 @@ export default function Ruangan() {
     const getRuang = async () => {
       const data = await getDataRuanganUser();
       setRuang(data.data);
-      // console.log("====================================");
-      // console.log(data.data);
-      // console.log("====================================");
+      console.log("====================================");
+      console.log(data.data);
+      console.log("====================================");
     };
     getRuang();
   }, []);
@@ -30,7 +30,7 @@ export default function Ruangan() {
                   data.deskripsi.slice(0, 130) +
                   (data.deskripsi.length > 100 ? "..." : "")
                 }
-                image={data.gambar}
+                image={data.dataGambar.length > 0 ? data.dataGambar[0].file_gambar : ''}
                 title={data.nama_ruangan}
                 link={data.id_ruangan}
               />

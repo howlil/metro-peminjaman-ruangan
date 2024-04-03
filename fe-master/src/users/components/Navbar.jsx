@@ -1,8 +1,8 @@
 import { navbardata } from "../data/NavLink";
 import ActiveRoute from "./ActiveRoute";
-import DropDown from "./ui/DropDown";
 import { dataRuang } from "../data/data";
 import MobileNav from "./MobileNav";
+import Dropdown from "./ui/DropDown";
 
 import Container from "./ui/Container";
 export default function Navbar() {
@@ -17,7 +17,7 @@ export default function Navbar() {
           {navbardata.map((data, i) => (
             <div key={i} className="sm:flex sm:items-center">
               {data.label.toLowerCase() === "ruangan" ? (
-                <DropDown title="Ruangan" items={dataRuang} />
+                <Dropdown title="Ruangan" />
               ) : (
                 <ActiveRoute to={data.link}>
                   <p>{data.label}</p>
@@ -25,6 +25,7 @@ export default function Navbar() {
               )}
             </div>
           ))}
+          ...
         </nav>
       </div>
     </Container>
