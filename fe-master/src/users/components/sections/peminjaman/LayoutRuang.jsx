@@ -8,7 +8,6 @@ import { useLocation } from "react-router-dom";
 
 export default function LayoutRuang() {
   const [isCalender, setCalender] = useState(true);
-  const loc = useLocation();
 
   return (
     <>

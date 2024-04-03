@@ -3,6 +3,7 @@ import Judul from "../../ui/Judul";
 import Button from "../../ui/Button";
 import tambahPeminjaman from "@/api/users/peminjaman/tambahPeminjaman";
 import { useState } from "react";
+import { useLocation } from "react-router-dom";
 import InputFile from "../../ui/InputFile";
 
 export default function FormPeminjaman() {
@@ -14,12 +15,16 @@ export default function FormPeminjaman() {
   const [jamMulai, setJamMulai] = useState("");
   const [jamSelesai, setJamSelesai] = useState("");
   const [file, setFile] = useState(null);
+  const location = useLocation();
+  const url = location.pathname;
+  const id = url.substring(url.lastIndexOf("/") + 1);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
       const response = await tambahPeminjaman(
+        id,
         namaPeminjam,
         jabatan,
         namaKegiatan,

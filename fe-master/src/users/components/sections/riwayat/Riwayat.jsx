@@ -26,23 +26,25 @@ export default function Riwayat() {
   };
 
   return (
-    <Container>
-      <Judul judul="Riwayat" />
-      <div className="mb-32">
-        {riwayat.map((item, index) => (
-          <CardRiwayat
-            key={index}
-            name={item.nama_peminjam}
-            eventType={item.nama_kegiatan}
-            date={item.tanggal_peminjaman}
-            location={item.dataRuangan.nama_ruangan}
-            timeRange={`${formatTime(item.jam_mulai_peminjaman)} - ${formatTime(
-              item.jam_selesai_peminjaman
-            )}`}
-            buttonText={item.status}
-          />
-        ))}
-      </div>
-    </Container>
+    <div className=" mt-8 min-h-screen">
+      <Container>
+        <Judul judul="Riwayat" />
+        <div className="mb-32">
+          {riwayat.map((item, index) => (
+            <CardRiwayat
+              key={index}
+              name={item.nama_peminjam}
+              eventType={item.nama_kegiatan}
+              date={item.tanggal_peminjaman}
+              location={item.dataRuangan.nama_ruangan}
+              timeRange={`${formatTime(
+                item.jam_mulai_peminjaman
+              )} - ${formatTime(item.jam_selesai_peminjaman)}`}
+              buttonText={item.status}
+            />
+          ))}
+        </div>
+      </Container>
+    </div>
   );
 }

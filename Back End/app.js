@@ -18,6 +18,10 @@ app.use('/fotoRuangan', express.static('public/images/ruangan'))
 app.use('/filePengajuan', express.static('public/doc/filePengajuan'))
 app.use(express.static(path.join(__dirname, "public")));
 
+if (process.env.NODE_ENV === 'development') {
+  app.use(cors({ origin: 'http://localhost:5173' }));
+}
+
 app.use('/', server.admin)
 app.use('/', server.dashboard)
 app.use('/', server.ajuanPeminjaman)

@@ -1,4 +1,4 @@
-export default function Button({ label, color, size, ...rest }) {
+export default function Button({ onClick,label, color, size, ...rest }) {
   const colorClasses = {
     primary: "text-white bg-custom-100",
     secondary: "text-white bg-gray-500",
@@ -19,7 +19,7 @@ export default function Button({ label, color, size, ...rest }) {
   baseClasses += ` ${sizeClasses[size] || ""}`;
 
   return (
-    <button className={baseClasses} {...rest}>
+    <button onClick={onClick} className={baseClasses} {...rest}>
       {label}
     </button>
   );

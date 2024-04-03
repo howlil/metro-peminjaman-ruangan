@@ -1,6 +1,7 @@
-import GaleriRuangan from "./GaleriRuangan";
 import Container from "../../ui/Container";
+import GaleriRuangan from "./GaleriRuangan";
 import DeskripsiRuang from "./DeskripsiRuang";
+
 export default function DetailRuang() {
   return (
     <Container>

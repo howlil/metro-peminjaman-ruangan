@@ -7,7 +7,9 @@ const modelFilePeminjaman = require('../../models/file_format_pengajuan')
 //pengecekan jadwal
 const cekJadwal = async (req,res) => {
     try {
-        const {tanggal_peminjaman, jam_mulai_peminjaman, id_ruangan} = req.body
+        // const {tanggal_peminjaman, jam_mulai_peminjaman, id_ruangan} = req.body
+        const { tanggal_peminjaman, jam_mulai_peminjaman, id_ruangan } = req.query;
+
         if (!tanggal_peminjaman || !jam_mulai_peminjaman || !id_ruangan) {
             return res.status(400).json({success: false, message: 'Silahkan lengkapi inputan data'})
         }

@@ -10,9 +10,7 @@ export default function Ruangan() {
     const getRuang = async () => {
       const data = await getDataRuanganUser();
       setRuang(data.data);
-      console.log("====================================");
-      console.log(data.data);
-      console.log("====================================");
+
     };
     getRuang();
   }, []);

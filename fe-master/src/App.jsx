@@ -23,11 +23,11 @@ function App() {
         <Routes>
           <Route path="/" element={<BerandaPage />} />
           <Route path="/jadwal" element={<JadwalPage />} />
-          <Route path="/ruangan" element={<RuanganPage />} />
+          <Route path="/ruangan/:id_ruang" element={<RuanganPage />} />
           <Route path="/riwayat" element={<RiwayatPage />} />
           <Route path="/peminjaman" element={<PeminjamanPage />} />
           <Route path="/kontak" element={<KontakPage />} />
-          <Route path="/peminjaman/checkruang" element={<LayoutRuang />} />
+          <Route path="/peminjaman/:id_ruang" element={<LayoutRuang />} />
           <Route path="/*" element={<NotFound />} />
 
           <Route path="/admin/login" element={<LoginPage />} />

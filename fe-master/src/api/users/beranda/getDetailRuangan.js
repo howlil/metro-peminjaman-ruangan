@@ -3,21 +3,15 @@ export default async function getDetailRuangan(id_ruangan) {
     method: "GET",
     redirect: "follow",
   };
+  const apiUrl = `${import.meta.env.VITE_API_BASE_URL}/detailRuanganUser/${id_ruangan}`;
 
   try {
-    const data = await fetch(
-      `http://localhost:5000/detailRuanganUser/${id_ruangan}`,
-      requestOptions
-    );
+    const data = await fetch(apiUrl,  requestOptions);
 
     const response = await data.json();
-    console.log("================asa====================");
     console.log(response);
-    console.log("====================================");
     return response;
   } catch (error) {
-    console.log("====================================");
     console.log(error);
-    console.log("====================================");
   }
 }

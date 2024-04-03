@@ -1,4 +1,5 @@
 export default async function tambahPeminjaman(
+  id_ruangan,
   nama_peminjam,
   jabatan,
   nama_kegiatan,
@@ -7,7 +8,6 @@ export default async function tambahPeminjaman(
   jam_mulai_peminjaman,
   jam_selesai_peminjaman,
   file,
-  id_ruangan,
 ) {
   const formdata = new FormData();
   formdata.append("nama_peminjam", nama_peminjam);
