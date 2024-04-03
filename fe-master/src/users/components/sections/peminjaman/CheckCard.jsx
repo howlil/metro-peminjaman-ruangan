@@ -2,7 +2,26 @@ import getDetailRuangan from "@/api/users/beranda/getDetailRuangan";
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import CircularProgress from "@mui/material/CircularProgress";
-
+import {
+  Wifi,
+  Coffee,
+  AirVent,
+  Projector,
+  Popcorn,
+  Fan,
+  Armchair,
+  BetweenVerticalEnd,
+} from "lucide-react";
+const facilityIcons = {
+  WIFI: <Wifi size={20} />,
+  AC: <AirVent size={20} />,
+  Projector: <Projector size={20} />,
+  Snack: <Popcorn size={20} />,
+  Meja: <BetweenVerticalEnd size={20} />,
+  Kursi: <Armchair size={20} />,
+  Dispenser: <Coffee size={20} />,
+  " Kipas Angin": <Fan size={20} />,
+};
 export default function CheckCard() {
   const [detailRuangan, setDetailRuangan] = useState([]);
   const location = useLocation();
@@ -51,10 +70,20 @@ export default function CheckCard() {
           {detailRuangan.deskripsi}
         </p>
         <div className="my-4">
-          <h3 className="text-xl text-custom-600">Fasilitas:</h3>
-          <ul>
+          <h3 className="text-xl text-custom-600 mb-3">Fasilitas:</h3>
+          <ul
+            className={`${
+              detailRuangan.dataFasilitas.length > 4
+                ? "flex justify-between flex-wrap gap-2"
+                : ""
+            }`}
+          >
             {detailRuangan.dataFasilitas.map((fasilitas, index) => (
-              <li className="text-custom-500" key={index}>
+              <li
+                key={index}
+                className="text-sm flex gap-3 mb-2 text-custom-500"
+              >
+                {facilityIcons[fasilitas.nama_fasilitas]}
                 {fasilitas.nama_fasilitas}
               </li>
             ))}
@@ -65,7 +94,7 @@ export default function CheckCard() {
             <div className="aspect-w-16 aspect-h-9 h-1/3">
               <img
                 className="object-cover w-full h-full"
-                src={`${imgUrl}${detailRuangan.dataGambar[0].file_gambar}`}
+                src={`${imgUrl}${detailRuangan.dataGambar[1].file_gambar}`}
                 alt="Room"
               />
             </div>

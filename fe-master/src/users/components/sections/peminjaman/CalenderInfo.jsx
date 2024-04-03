@@ -62,7 +62,7 @@ const appData = [
   },
 ];
 
-const CalendarInfo = ({onClick}) => {
+const CalendarInfo = ({ onClick }) => {
   const eventSettings = { appData };
 
   return (
@@ -90,17 +90,20 @@ const CalendarInfo = ({onClick}) => {
         </h1>
         <div className="items-center flex gap-3 mb-3">
           <Circle size={20} fill="#574FF0" color="#574FF0" />
-          <p>Ruangan sudah diajukan peminjaman</p>
+          <p>Ruangan sudah disetujui peminjaman</p>
         </div>
         <div className="items-center flex gap-3">
           <Circle size={20} fill="#333" color="#333" />
-          <p>Ruangan sedang diajukan peminjaman</p>
+          <p>Ruangan sedang diproses peminjaman</p>
         </div>
       </div>
       <div className="grid sm:grid-cols-3 my-8">
-        <Button 
-        onClick={onClick}
-        label="Ajukan peminjaman" color="primary" size="small" />
+        <Button
+          onClick={onClick}
+          label="Ajukan peminjaman"
+          color="primary"
+          size="small"
+        />
       </div>
     </div>
   );

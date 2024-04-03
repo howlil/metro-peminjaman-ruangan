@@ -8,6 +8,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 export default function PilihRuang() {
   const [ruang, setRuang] = useState([]);
   const [isLoading, setLoading] = useState(false);
+  const [src, setSrc] = useState([]);
 
   useEffect(() => {
     const getRuang = async () => {
@@ -15,17 +16,13 @@ export default function PilihRuang() {
       const data = await getDataRuanganUser();
       setRuang(data.data);
       setLoading(false);
-    };
-
+      
+      };
     getRuang();
   }, []);
 
   if (isLoading) {
-    return (
-      <div className="flex justify-center items-center h-full">
-        <CircularProgress />
-      </div>
-    );
+    return <div className="min-h-screen"></div>;
   }
 
   return (
@@ -46,11 +43,7 @@ export default function PilihRuang() {
               <CardRuangan
                 key={data.id_ruangan}
                 title={data.nama_ruangan}
-                src={
-                  data.dataGambar.length > 0
-                    ? data.dataGambar[0].file_gambar
-                    : ""
-                }
+                src={src}
                 to={`/peminjaman/${data.id_ruangan}`}
               />
             ))}

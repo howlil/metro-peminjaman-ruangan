@@ -30,6 +30,7 @@ const InputFile = ({ label, onChange, placeholder }) => {
           ref={inputRef}
           onChange={handleFileChange}
           accept=".pdf"
+          required
         />
         <input
           className={`pr-12 w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm ${

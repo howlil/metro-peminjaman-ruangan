@@ -8,11 +8,11 @@ export default function CardRuangan({ src, title, to }) {
       data-aos-duration="2000"
       data-aos-anchor-easing="ease-in-out"
       data-aos="fade-up"
-      className="overflow-hidden  rounded-md hover:shadow-xl hover:shadow-gray-400 transition-all ease-in-out duration-300"
+      className="overflow-hidden  rounded-lg hover:shadow-lg hover:shadow-gray-200 transition-all ease-in-out duration-300"
     >
       <Link to={to} className="block">
         <div
-          className="bg-cover bg-center h-48 w-full flex items-center justify-center"
+          className="bg-cover border bg-center h-48 w-full flex items-center justify-center"
           style={{ backgroundImage: `url(${apiUrl})` }}
         >
           <p className="bg-custom-400 text-white rounded-md font-medium px-2 py-1">

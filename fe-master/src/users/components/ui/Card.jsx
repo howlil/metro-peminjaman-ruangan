@@ -14,7 +14,7 @@ export default function Card(props) {
     >
       <Link to={`/ruangan/${link}`}>
         <img
-          className="w-full h-56 rounded-md object-cover"
+          className="w-full h-48 rounded-md object-cover"
           src={apiUrl}
           alt="Room"
         />

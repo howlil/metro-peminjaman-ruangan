@@ -2,9 +2,11 @@ import InputLabel from "../../ui/InputLabel";
 import Judul from "../../ui/Judul";
 import Button from "../../ui/Button";
 import tambahPeminjaman from "@/api/users/peminjaman/tambahPeminjaman";
-import { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import InputFile from "../../ui/InputFile";
+import Alert from "../../ui/Alert";
+import getDataCaraPeminjaman from "@/api/users/beranda/getDataCaraPeminjaman";
 
 export default function FormPeminjaman() {
   const [namaPeminjam, setNamaPeminjam] = useState("");
@@ -17,7 +19,14 @@ export default function FormPeminjaman() {
   const [file, setFile] = useState(null);
   const location = useLocation();
   const url = location.pathname;
+  const navigate = useNavigate();
   const id = url.substring(url.lastIndexOf("/") + 1);
+  const [openModal, setModal] = useState(false);
+  const apiUrl = `${import.meta.env.VITE_API_BASE_URL}/filePengajuan/`;
+  console.log("====================================");
+  console.log(apiUrl);
+  console.log("====================================");
+  const [data, setData] = useState(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -35,9 +44,31 @@ export default function FormPeminjaman() {
         file
       );
       console.log(response);
+      setModal(true);
     } catch (error) {
       console.error(error);
     }
+  };
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await getDataCaraPeminjaman();
+        setData(res.data[0]);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+    fetchData();
+  }, []);
+  const resetFormFields = () => {
+    setNamaPeminjam("");
+    setJabatan("");
+    setKegiatan("");
+    setKontak("");
+    setTglPeminjaman("");
+    setJamMulai("");
+    setJamSelesai("");
+    setFile("");
   };
 
   return (
@@ -113,14 +144,29 @@ export default function FormPeminjaman() {
             placeholder={file ? file : "input file disini"}
             onChange={(selectedFile) => setFile(selectedFile)}
           />
-          <p className="ml-4 text-custom-500 underline text-sm cursor-pointer hover:text-custom-100 transition-all ease-linear duration-100">
-            Download disini jika belum ada file peminjaman
-          </p>
+          {data && (
+            <a
+              href={`${apiUrl}${data.file_pengajuan}`}
+              className="text-custom-500 hover:text-custom-100 text-sm text-left underline cursor-pointer ml-2"
+              download
+            >
+              Download disini jika belum ada file peminjaman
+            </a>
+          )}
         </div>
         <div className="sm:grid sm:grid-cols-3">
           <Button label="Ajukan Peminjaman" size="small" color="primary" />
         </div>
       </form>
+      {openModal && (
+        <Alert
+          onClose={() => {
+            resetFormFields();
+            setModal(false);
+          }}
+          onDirect={() => navigate("/riwayat")}
+        />
+      )}
     </div>
   );
 }

@@ -10,7 +10,6 @@ export default function Ruangan() {
     const getRuang = async () => {
       const data = await getDataRuanganUser();
       setRuang(data.data);
-
     };
     getRuang();
   }, []);
@@ -25,10 +24,14 @@ export default function Ruangan() {
               <Card
                 key={data.id_ruangan}
                 describe={
-                  data.deskripsi.slice(0, 130) +
+                  data.deskripsi.slice(0, 90) +
                   (data.deskripsi.length > 100 ? "..." : "")
                 }
-                image={data.dataGambar.length > 0 ? data.dataGambar[0].file_gambar : ''}
+                image={
+                  data.dataGambar.length > 0
+                    ? data.dataGambar[1].file_gambar
+                    : ""
+                }
                 title={data.nama_ruangan}
                 link={data.id_ruangan}
               />
