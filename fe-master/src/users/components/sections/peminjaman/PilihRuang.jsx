@@ -8,7 +8,6 @@ import CircularProgress from "@mui/material/CircularProgress";
 export default function PilihRuang() {
   const [ruang, setRuang] = useState([]);
   const [isLoading, setLoading] = useState(false);
-  const [src, setSrc] = useState([]);
 
   useEffect(() => {
     const getRuang = async () => {
@@ -44,7 +43,7 @@ export default function PilihRuang() {
               <CardRuangan
                 key={data.id_ruangan}
                 title={data.nama_ruangan}
-                src={src}
+                src={data.dataGambar[1].file_gambar}
                 to={`/peminjaman/${data.id_ruangan}`}
               />
             ))}

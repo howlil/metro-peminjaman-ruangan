@@ -5,14 +5,14 @@ import CardRiwayat from "./CardRiwayat";
 import getRiwayat from "@/api/users/riwayat/getRiwayat";
 
 export default function Riwayat() {
-  // State to store fetched data
   const [riwayat, setRiwayat] = useState([]);
 
   useEffect(() => {
     const fetchdata = async () => {
       const data = await getRiwayat();
-      if (data) {
-        setRiwayat(data.data);
+      if (data && data.data) {
+        const sortedData = data.data.sort((a, b) => b.tanggal_peminjaman.localeCompare(a.tanggal_peminjaman));
+        setRiwayat(sortedData);
       }
     };
     fetchdata();
