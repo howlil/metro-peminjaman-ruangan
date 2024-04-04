@@ -4,7 +4,7 @@ import CheckCard from "./CheckCard";
 import FormPeminjaman from "./FormPeminjaman";
 import Navbar from "../../Navbar";
 import { useState } from "react";
-import { useLocation } from "react-router-dom";
+import CalenderRef from "./CalenderRef";
 
 export default function LayoutRuang() {
   const [isCalender, setCalender] = useState(true);
@@ -18,7 +18,7 @@ export default function LayoutRuang() {
         </div>
         <div className="col-span-2">
           {isCalender ? (
-            <CalenderInfo onClick={() => setCalender(false)} />
+            <CalenderRef onClick={() => setCalender(false)} />
           ) : (
             <FormPeminjaman />
           )}

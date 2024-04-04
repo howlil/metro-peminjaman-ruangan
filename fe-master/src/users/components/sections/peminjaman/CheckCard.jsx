@@ -20,7 +20,7 @@ const facilityIcons = {
   Meja: <BetweenVerticalEnd size={20} />,
   Kursi: <Armchair size={20} />,
   Dispenser: <Coffee size={20} />,
-  " Kipas Angin": <Fan size={20} />,
+  Kipas : <Fan size={20} />,
 };
 export default function CheckCard() {
   const [detailRuangan, setDetailRuangan] = useState([]);
@@ -36,7 +36,6 @@ export default function CheckCard() {
       const res = await getDetailRuangan(id);
       if (res && res.success) {
         setDetailRuangan(res.data);
-        console.log(res.data);
       }
       setIsLoading(false); // Set loading to false when fetch completes [setIsLoading] x
     };
@@ -74,7 +73,7 @@ export default function CheckCard() {
           <ul
             className={`${
               detailRuangan.dataFasilitas.length > 4
-                ? "flex justify-between flex-wrap gap-2"
+                ? "grid grid-cols-2 gap-2"
                 : ""
             }`}
           >

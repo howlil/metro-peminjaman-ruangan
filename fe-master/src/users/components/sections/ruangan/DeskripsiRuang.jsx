@@ -87,9 +87,7 @@ export default function DeskripsiRuang() {
           <h3 className="text-xl font-semibold mb-3">Fasilitas:</h3>
           <ul
             className={`${
-              data.dataFasilitas.length > 4
-                ? "flex justify-between flex-wrap gap-2"
-                : ""
+              data.dataFasilitas.length > 4 ? "grid grid-cols-2 gap-2" : ""
             }`}
           >
             {data.dataFasilitas.map((fasilitas, index) => (

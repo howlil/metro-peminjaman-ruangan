@@ -1,110 +1,94 @@
+import React, { useEffect, useState, useRef } from "react";
 import {
   ScheduleComponent,
-  Week,
   Month,
-  TimelineViews,
-  TimelineMonth,
   Inject,
   ViewsDirective,
   ViewDirective,
 } from "@syncfusion/ej2-react-schedule";
-import { Circle } from "lucide-react";
-import Button from "../../ui/Button";
-const appData = [
-  {
-    Id: 1,
-    Subject: "Board Meeting",
-    StartTime: new Date(2018, 1, 15, 9, 0),
-    EndTime: new Date(2018, 1, 15, 11, 0),
-    IsAllDay: false,
-  },
-  {
-    Id: 2,
-    Subject: "Training session on project management",
-    StartTime: new Date(2018, 1, 16, 10, 0),
-    EndTime: new Date(2018, 1, 16, 12, 0),
-    IsAllDay: false,
-  },
-  {
-    Id: 3,
-    Subject: "Product brainstorming session",
-    StartTime: new Date(2018, 1, 17, 10, 30),
-    EndTime: new Date(2018, 1, 17, 12, 45),
-    IsAllDay: false,
-  },
-  {
-    Id: 4,
-    Subject: "Client meeting",
-    StartTime: new Date(2018, 1, 18, 14, 0),
-    EndTime: new Date(2018, 1, 18, 16, 30),
-    IsAllDay: false,
-  },
-  {
-    Id: 5,
-    Subject: "HR Discussion",
-    StartTime: new Date(2018, 1, 19, 9, 30),
-    EndTime: new Date(2018, 1, 19, 10, 30),
-    IsAllDay: false,
-  },
-  {
-    Id: 6,
-    Subject: "Office Outing",
-    StartTime: new Date(2018, 1, 20),
-    EndTime: new Date(2018, 1, 20),
-    IsAllDay: true,
-  },
-  {
-    Id: 7,
-    Subject: "Weekly Review",
-    StartTime: new Date(2018, 1, 21, 11, 0),
-    EndTime: new Date(2018, 1, 21, 13, 0),
-    RecurrenceRule: "FREQ=WEEKLY;BYDAY=FR;INTERVAL=1",
-  },
-];
+import { DataManager, WebApiAdaptor } from "@syncfusion/ej2-data";
+import getDetailJadwal from "@/api/users/jadwal/getDetailJadwal";
+import getDataRuanganUser from "@/api/users/beranda/getDataRuanganUser";
+import getTampilJadwal from "@/api/users/jadwal/getTampilJadwal";
+import { useLocation } from "react-router-dom";
 
-const CalendarInfo = ({ onClick }) => {
-  const eventSettings = { appData };
+const colorMap = {
+  Diproses: "#FA973B",
+  Ditolak: "#FF5050",
+  Disetujui: "#4FB955",
+  Selesai: "#C2DFFF",
+};
+
+const CalendarInfo = () => {
+  const [events, setEvents] = useState([]);
+  const location = useLocation();
+  const currentId = location.pathname.split("/").pop();
+  const scheduleObj = useRef(null);
+  useEffect(() => {
+    const fetchEventsForCurrentRoom = async () => {
+      const ruanganResponse = await getDataRuanganUser();
+      const ruanganData = ruanganResponse.data.find(
+        (room) => room.id_ruangan === currentId
+      );
+      const jadwalResponse = await getTampilJadwal();
+      const filteredJadwalData = jadwalResponse.data.filter(
+        (jadwal) => jadwal.dataRuangan.nama_ruangan === ruanganData.nama_ruangan
+      );
+
+      const detailedEvents = await Promise.all(
+        filteredJadwalData.map(async (jadwal) => {
+          const detailResponse = await getDetailJadwal(jadwal.id_peminjaman);
+          if (detailResponse.success && detailResponse.data) {
+            return {
+              Id: jadwal.id_peminjaman,
+              Subject: detailResponse.data.nama_kegiatan,
+              StartTime: new Date(
+                `${detailResponse.data.tanggal_peminjaman}T${detailResponse.data.jam_mulai_peminjaman}`
+              ),
+              EndTime: new Date(
+                `${detailResponse.data.tanggal_peminjaman}T${detailResponse.data.jam_selesai_peminjaman}`
+              ),
+              CategoryColor: colorMap[detailResponse.data.status],
+              Status: detailResponse.data.status,
+              NamaPeminjam: detailResponse.data.nama_peminjam,
+              NamaRuangan: detailResponse.data.dataRuangan.nama_ruangan,
+              Location: detailResponse.data.dataRuangan.nama_ruangan,
+              Description: `Peminjam: ${detailResponse.data.nama_peminjam}\n  Status: ${detailResponse.data.status}`,
+            };
+          }
+        })
+      );
+
+      setEvents(detailedEvents.filter((event) => event));
+    };
+
+    fetchEventsForCurrentRoom();
+  }, [currentId]);
+
+  const eventSettings = {
+    dataSource: events,
+  };
+  const onEventRendered = (args) => {
+    const categoryColor = colorMap[args.data.Status];
+    if (!args.element || !categoryColor) {
+      return;
+    }
+    args.element.style.backgroundColor = categoryColor;
+  };
 
   return (
-    <div
-      data-aos-duration="2000"
-      data-aos-anchor-easing="ease-in-out"
-      data-aos="fade-up"
-      className="sm:ml-20 mx-6 sm:mx-0 sm:mr-10 lg:mr-36 mt-10"
-    >
+    <div>
       <ScheduleComponent
-        width="100%"
-        height="450px"
-        selectedDate={new Date(2018, 1, 15)}
+        height="650px"
         eventSettings={eventSettings}
+        eventRendered={onEventRendered}
+        readonly
       >
         <ViewsDirective>
           <ViewDirective option="Month" />
         </ViewsDirective>
-        <Inject services={[Week, Month, TimelineViews, TimelineMonth]} />
+        <Inject services={[Month]} />
       </ScheduleComponent>
-
-      <div className="my-8">
-        <h1 className="font-semibold text-xl">
-          Keterangan Ruangan yang diajuakan
-        </h1>
-        <div className="items-center flex gap-3 mb-3">
-          <Circle size={20} fill="#574FF0" color="#574FF0" />
-          <p>Ruangan sudah disetujui peminjaman</p>
-        </div>
-        <div className="items-center flex gap-3">
-          <Circle size={20} fill="#333" color="#333" />
-          <p>Ruangan sedang diproses peminjaman</p>
-        </div>
-      </div>
-      <div className="grid sm:grid-cols-3 my-8">
-        <Button
-          onClick={onClick}
-          label="Ajukan peminjaman"
-          color="primary"
-          size="small"
-        />
-      </div>
     </div>
   );
 };

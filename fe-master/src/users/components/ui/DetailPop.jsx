@@ -4,7 +4,7 @@ import { UserRound, X } from "lucide-react";
 export default function DetailPop({ onClick, penanggungJawab, namaRuang }) {
   return (
     <div className="fixed inset-0  bg-black bg-opacity-50 flex justify-center items-center">
-      <div className="bg-white w-1/4 z-10 relative p-12 shadow rounded-md">
+      <div className="bg-white sm:w-1/4 z-10 relative p-12 shadow rounded-md">
         <div
           onClick={onClick} // Now this onClick will work
           className="absolute top-4 right-4 p-1 rounded-full bg-slate-100 cursor-pointer" // Added cursor-pointer for better UX

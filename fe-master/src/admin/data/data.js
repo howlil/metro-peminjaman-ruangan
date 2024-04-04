@@ -108,11 +108,11 @@ export const pilihanLantai = ['Lantai 1', 'Lantai 2', 'Lantai 3'];
 export const pilihanFasilitas = [
   {
     id : 1,
-    label : "Air Conditioner"
+    label : "AC"
   },
   {
     id : 2,
-    label : "Wi-fi"
+    label : "WIFI"
   },
   {
     id : 3,
@@ -136,6 +136,6 @@ export const pilihanFasilitas = [
   },
   {
     id : 8,
-    label : "Kipas Angin"
+    label : "Kipas"
   },
 ]; 

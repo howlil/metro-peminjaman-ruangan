@@ -15,11 +15,11 @@ export default function Ruangan() {
   }, []);
 
   return (
-    <>
+    <div className="min-h-screen">
       <Container>
         <div className="min-h-screen">
           <Judul judul="Ruangan" />
-          <div className=" grid grid-cols-1 sm:grid-cols-2  lg:grid-cols-4  gap-4">
+          <div className=" grid grid-cols-1 sm:grid-cols-2 my-16 lg:grid-cols-4  gap-4">
             {ruang.map((data) => (
               <Card
                 key={data.id_ruangan}
@@ -39,6 +39,6 @@ export default function Ruangan() {
           </div>
         </div>
       </Container>
-    </>
+    </div>
   );
 }
