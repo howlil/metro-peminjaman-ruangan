@@ -1,126 +1,145 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import {
   ScheduleComponent,
-  Day,
-  Week,
-  WorkWeek,
   Month,
-  Agenda,
   Inject,
   ViewsDirective,
   ViewDirective,
 } from "@syncfusion/ej2-react-schedule";
-import "@syncfusion/ej2-base/styles/material.css";
-import "@syncfusion/ej2-buttons/styles/material.css";
-import "@syncfusion/ej2-calendars/styles/material.css";
-import "@syncfusion/ej2-dropdowns/styles/material.css";
-import "@syncfusion/ej2-inputs/styles/material.css";
-import "@syncfusion/ej2-navigations/styles/material.css";
-import "@syncfusion/ej2-popups/styles/material.css";
-import "@syncfusion/ej2-splitbuttons/styles/material.css";
-import "@syncfusion/ej2-react-schedule/styles/material.css";
-import {
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogActions,
-  Button as MuiButton,
-} from "@mui/material";
+import { Internationalization } from "@syncfusion/ej2-base";
+
 import getTampilJadwal from "@/api/users/jadwal/getTampilJadwal";
 import getDetailJadwal from "@/api/users/jadwal/getDetailJadwal";
 
-const Calendar = () => {
-  const [events, setEvents] = useState([]);
-  const [openDialog, setOpenDialog] = useState(false);
-  const [eventDetail, setEventDetail] = useState(null);
+const roomColorMap = {
+  "Ruang Alpha": "#C2DFFF",
+  "Ruang Omega": "#E9FFEA",
+  "Ruang Delta": "#F8EDC8",
+  "Ruang Beta": "#D6C2FF",
+};
+const col = {
+  "Ruang Alpha": "#71AFF2",
+  "Ruang Omega": "#4FB955",
+  "Ruang Delta": "#FA973B",
+  "Ruang Beta": "#9863FF",
+};
 
-  const colorMap = {
-    Diproses: "#FA973B",
-    Ditolak: "#FF5050",
-    Disetujui: "#4FB955",
-    Selesai: "#C2DFFF",
+const Calender = () => {
+  const instance = new Internationalization();
+  const getTimeString = (value) => {
+    return instance.formatDate(value, { skeleton: "hm" });
   };
-
+  const [events, setEvents] = useState([]);
+  const scheduleObj = useRef(null);
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await getTampilJadwal();
-        if (res.success) {
-          const transformedEvents = res.data.map((item) => ({
-            Id: item.id_peminjaman,
-            Subject: item.dataRuangan.nama_ruangan,
-            StartTime: new Date(
-              item.tanggal_peminjaman + "T" + item.jam_mulai_peminjaman
-            ),
-            EndTime: new Date(
-              item.tanggal_peminjaman + "T" + item.jam_selesai_peminjaman
-            ),
-            CategoryColor: roomColors[item.dataRuangan.nama_ruangan] || "#999", // Default color
-            RoomId: item.id_peminjaman,
-          }));
-
-          setEvents(transformedEvents);
-        }
-      } catch (error) {
-        console.error("Error fetching events:", error);
+    const fetchEventsDetails = async () => {
+      const response = await getTampilJadwal();
+      if (response.success) {
+        const eventsDetails = await Promise.all(
+          response.data.map(async (item) => {
+            const detailResponse = await getDetailJadwal(item.id_peminjaman);
+            if (detailResponse.success) {
+              return {
+                Id: item.id_peminjaman,
+                Subject: item.dataRuangan.nama_ruangan,
+                StartTime: new Date(
+                  `${detailResponse.data.tanggal_peminjaman}T${detailResponse.data.jam_mulai_peminjaman}`
+                ),
+                EndTime: new Date(
+                  `${detailResponse.data.tanggal_peminjaman}T${detailResponse.data.jam_selesai_peminjaman}`
+                ),
+                CategoryColor:
+                  roomColorMap[item.dataRuangan.nama_ruangan] || "#333",
+                Description: `Peminjam: ${detailResponse.data.nama_peminjam}\nRuangan: ${item.dataRuangan.nama_ruangan}\nStatus: ${detailResponse.data.status}`,
+                SolidCol: col[item.dataRuangan.nama_ruangan] || "#333",
+              };
+            }
+            return null;
+          })
+        );
+        setEvents(eventsDetails.filter(Boolean));
       }
     };
-    fetchData();
+
+    fetchEventsDetails();
   }, []);
 
-  const handleEventClick = async (args) => {
-    const { RoomId } = args.event;
-    try {
-      const detailRes = await getDetailJadwal(RoomId);
-      console.log("====================================");
-      console.log(detailRes);
-      console.log("====================================");
-      if (detailRes.success) {
-        setEventDetail(detailRes.data);
-        setOpenDialog(true);
-      }
-    } catch (error) {
-      console.error("Error fetching room details:", error);
+  const tooltipTemplate = (props) => {
+    const primaryColor = "#ffff";
+    return (
+      <div>
+        <div className="subject" style={{ color: primaryColor }}>
+          {props.Subject}
+        </div>
+        <div className="time" style={{ color: primaryColor }}>
+          Time: {getTimeString(props.StartTime)} -{" "}
+          {getTimeString(props.EndTime)}
+        </div>
+      </div>
+    );
+  };
+
+  const eventTemplate = (props) => {
+    return (
+      <div style={{ marginLeft: "6px" }}>
+        <div className="subject" style={{ color: "#333" }}>
+          {props.Subject}
+        </div>
+        <div className="time" style={{ color: "#333" }}>
+          {getTimeString(props.StartTime)} - {getTimeString(props.EndTime)}
+        </div>
+      </div>
+    );
+  };
+
+  const onEventRendered = (args) => {
+    const categoryColor = args.data.CategoryColor;
+    const solidCol = args.data.SolidCol;
+
+    if (!args.element) return;
+
+    args.element.style.height = "48px";
+    args.element.style.backgroundColor = categoryColor;
+
+    args.element.style.borderLeft = `4px solid ${solidCol}`;
+
+    const subjectElement =
+      args.element.querySelector(".e-subject") || args.element;
+    if (subjectElement) {
+      subjectElement.style.color = "#333";
     }
+  };
+  const eventSettings = {
+    tooltipTemplate: tooltipTemplate,
+    dataSource: events,
+    enableTooltip: true,
+    template: eventTemplate,
+    fields: {
+      id: "Id",
+      subject: { name: "Subject" },
+      startTime: { name: "StartTime" },
+      endTime: { name: "EndTime" },
+      description: { name: "Description" },
+      color: { name: "CategoryColor", name: "SolidCol" },
+    },
   };
 
   return (
     <div>
       <ScheduleComponent
+        eventRendered={onEventRendered}
         height="650px"
-        selectedDate={new Date()}
-        eventSettings={{
-          dataSource: events,
-          categoryColorField: "CategoryColor",
-        }}
-        eventClick={handleEventClick}
+        ref={scheduleObj}
+        readonly
+        eventSettings={eventSettings}
       >
         <ViewsDirective>
           <ViewDirective option="Month" />
         </ViewsDirective>
-        <Inject services={[ Month]} />
+        <Inject services={[Month]} />
       </ScheduleComponent>
-
-      {eventDetail && (
-        <Dialog open={openDialog} onClose={() => setOpenDialog(false)}>
-          <DialogTitle>Event Details</DialogTitle>
-          <DialogContent>
-            {/* Render more details from eventDetail */}
-            <p>
-              <strong>Name:</strong> {eventDetail.nama_peminjam}
-            </p>
-            <p>
-              <strong>Room:</strong> {eventDetail.nama_ruangan}
-            </p>
-            {/* Add more detail fields as necessary */}
-          </DialogContent>
-          <DialogActions>
-            <MuiButton onClick={() => setOpenDialog(false)}>Close</MuiButton>
-          </DialogActions>
-        </Dialog>
-      )}
     </div>
   );
 };
 
-export default Calendar;
+export default Calender;

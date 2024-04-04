@@ -10,10 +10,10 @@ const IconTextPair = ({ Icon, text }) => (
 );
 function getColorVariant(buttonText) {
   const colorMap = {
-    Diproses: "#FA973B",
-    Ditolak: "#FF5050",
-    Disetujui: "#4FB955",
-    Selesai: "#C2DFFF",
+    Diproses: "bg-status-Diproses",
+    Ditolak: "bg-status-Ditolak",
+    Disetujui: "bg-status-Disetujui",
+    Selesai: "bg-status-Selesai",
   };
 
   // Default to some color if buttonText is not found in colorMap

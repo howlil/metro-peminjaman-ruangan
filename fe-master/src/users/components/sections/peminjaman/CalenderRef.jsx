@@ -7,7 +7,7 @@ export default function CalenderRef({ onClick }) {
       data-aos-duration="1500"
       data-aos-anchor-easing="ease-in-out"
       data-aos="fade-left"
-      className="mx-6 my-12 sm:mx-16"
+      className="mx-6 my-12 sm:mx-16 lg:pr-16"
     >
       <>
         <CalendarInfo />
@@ -17,11 +17,11 @@ export default function CalenderRef({ onClick }) {
           Keterangan Ruangan yang diajuakan
         </h1>
         <div className="items-center flex gap-3 mb-3">
-          <Circle size={20} fill="#4FB955" color="#4FB955" />
+          <Circle size={20} fill="#574FF0" color="#574FF0" />
           <p>Ruangan sudah disetujui peminjaman</p>
         </div>
         <div className="items-center flex gap-3">
-          <Circle size={20} fill="#FA973B" color="#FA973B" />
+          <Circle size={20} fill="#262830" color="#262830" />
           <p>Ruangan sedang diproses peminjaman</p>
         </div>
       </div>

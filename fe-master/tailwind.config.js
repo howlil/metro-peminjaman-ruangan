@@ -14,6 +14,12 @@ export default {
           700: "#F10707",
           800: "#EFEFEF"
         },
+        status:{
+          Diproses: "#262830",
+          Ditolak: "#F10707",
+          Disetujui: "#574FF0",
+          Selesai: "#E9FFEA",
+        },
       },
       screens: {
         'hp' : '475px',

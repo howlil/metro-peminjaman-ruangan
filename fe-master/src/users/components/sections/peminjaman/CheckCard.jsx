@@ -20,7 +20,7 @@ const facilityIcons = {
   Meja: <BetweenVerticalEnd size={20} />,
   Kursi: <Armchair size={20} />,
   Dispenser: <Coffee size={20} />,
-  Kipas : <Fan size={20} />,
+  Kipas: <Fan size={20} />,
 };
 export default function CheckCard() {
   const [detailRuangan, setDetailRuangan] = useState([]);
@@ -60,7 +60,7 @@ export default function CheckCard() {
         data-aos-duration="2000"
         data-aos-anchor-easing="ease-in-out"
         data-aos="fade-right"
-        className="p-6 sm:p-20 md:pl-24 md:pr-4 md:pt-12"
+        className="p-6 sm:p-20 lg:pl-24 lg:pr-4 lg:pt-12"
       >
         <h1 className="text-white text-3xl font-bold mb-3">
           {detailRuangan.nama_ruangan}

@@ -7,7 +7,7 @@ export default function Hero() {
       data-aos-duration="1500"
       data-aos-anchor-easing="ease-in-out"
       data-aos="fade-up"
-      className="relative min-h-screen bg-no-repeat sm:bg-contain sm:bg-right bg-cover mb-16  "
+      className="relative min-h-screen bg-no-repeat lg:bg-contain lg:bg-right object-right  bg-cover mb-16  "
       style={{
         backgroundImage: `url('/public/bg.svg')`,
       }}

@@ -17,6 +17,7 @@ export default function PilihRuang() {
       setRuang(data.data);
       setLoading(false);
       
+      
       };
     getRuang();
   }, []);
@@ -31,7 +32,7 @@ export default function PilihRuang() {
         <Judul judul="Peminjaman" />
         <div className="mb-24">
           <p
-            data-aos-duration="2000"
+            data-aos-duration="1500"
             data-aos-anchor-easing="ease-in-out"
             data-aos="fade-up"
             className="text-xl font-medium mb-3"

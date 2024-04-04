@@ -1,4 +1,3 @@
-import React, { useEffect, useState, useRef } from "react";
 import {
   ScheduleComponent,
   Month,
@@ -11,12 +10,15 @@ import getDetailJadwal from "@/api/users/jadwal/getDetailJadwal";
 import getDataRuanganUser from "@/api/users/beranda/getDataRuanganUser";
 import getTampilJadwal from "@/api/users/jadwal/getTampilJadwal";
 import { useLocation } from "react-router-dom";
+import React, { useEffect, useState, useRef } from "react";
+
+import { Internationalization } from "@syncfusion/ej2-base";
 
 const colorMap = {
-  Diproses: "#FA973B",
-  Ditolak: "#FF5050",
-  Disetujui: "#4FB955",
-  Selesai: "#C2DFFF",
+  Diproses: "#262830",
+  Ditolak: "#F10707",
+  Disetujui: "#574FF0",
+  Selesai: "#E9FFEA",
 };
 
 const CalendarInfo = () => {
@@ -24,6 +26,10 @@ const CalendarInfo = () => {
   const location = useLocation();
   const currentId = location.pathname.split("/").pop();
   const scheduleObj = useRef(null);
+  const instance = new Internationalization();
+  const getTimeString = (value) => {
+    return instance.formatDate(value, { skeleton: "hm" });
+  };
   useEffect(() => {
     const fetchEventsForCurrentRoom = async () => {
       const ruanganResponse = await getDataRuanganUser();
@@ -65,17 +71,42 @@ const CalendarInfo = () => {
     fetchEventsForCurrentRoom();
   }, [currentId]);
 
-  const eventSettings = {
-    dataSource: events,
-  };
+
   const onEventRendered = (args) => {
-    const categoryColor = colorMap[args.data.Status];
-    if (!args.element || !categoryColor) {
-      return;
-    }
+    const categoryColor = args.data.CategoryColor;
+    const solidCol = args.data.SolidCol;
+
+    if (!args.element) return;
+
+    args.element.style.height = "48px";
     args.element.style.backgroundColor = categoryColor;
+
+    args.element.style.borderLeft = `4px solid ${solidCol}`;
+
+    const subjectElement =
+      args.element.querySelector(".e-subject") || args.element;
+    if (subjectElement) {
+      subjectElement.style.color = "#333";
+    }
+  };
+  const eventTemplate = (props) => {
+    return (
+      <div style={{ marginLeft: "6px" }}>
+        <div className="subject" style={{ color: "#fff" }}>
+          {props.Subject}
+        </div>
+        <div className="time" style={{ color: "#fff" }}>
+          {getTimeString(props.StartTime)} - {getTimeString(props.EndTime)}
+        </div>
+      </div>
+    );
   };
 
+  const eventSettings = {
+    dataSource: events,
+    template: eventTemplate,
+
+  };
   return (
     <div>
       <ScheduleComponent
@@ -83,6 +114,8 @@ const CalendarInfo = () => {
         eventSettings={eventSettings}
         eventRendered={onEventRendered}
         readonly
+        ref={scheduleObj}
+
       >
         <ViewsDirective>
           <ViewDirective option="Month" />
